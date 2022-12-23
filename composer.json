@@ -1,0 +1,52 @@
+{
+    "name": "starfolksoftware/paystack-php",
+    "description": "A PHP library to conveniently access the Paystack API from applications written in the PHP language.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Faruk Nasir",
+            "email": "faruk@starfolksoftware.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "StarfolkSoftware\\Paystack\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "StarfolkSoftware\\Paystack\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "require": {
+        "php": "^8.0",
+        "laminas/laminas-diactoros": "^2.8",
+        "php-http/client-common": "^2.3",
+        "php-http/discovery": "^1.14.1",
+        "psr/http-client": "^1.0.1",
+        "psr/http-client-implementation": "^1.0",
+        "psr/http-factory": "^1.0.1",
+        "symfony/options-resolver": "^5.2"
+    },
+    "require-dev": {
+        "php-http/curl-client": "^2.1",
+        "php-http/mock-client": "^1.5",
+        "phpunit/phpunit": "^9.5",
+        "symfony/var-dumper": "^5.1"
+    },
+    "scripts": {
+        "test": "phpunit"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "support": {
+        "email": "contact@starfolksoftware.com",
+        "issues": "https://github.com/starfolksoftware/paystack-php/issues",
+        "source": "https://github.com/starfolksoftware/paystack-php",
+        "docs": "https://github.com/starfolksoftware/paystack-php/blob/master/README.md"
+    }
+}

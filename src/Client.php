@@ -85,18 +85,4 @@ final class Client
             return $this->{$name}();
         }
     }
-
-    /**
-     * Mock client
-     * 
-     * @param MockClient $client
-     * @return static
-     */
-    public static function fake(MockClient $client)
-    {
-        return new Client([
-            'clientBuilder' => new ClientBuilder($client),
-            'secretKey' => 'fake'
-        ]);
-    }
 }

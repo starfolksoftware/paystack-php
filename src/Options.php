@@ -27,8 +27,8 @@ final class Options
             [
                 'clientBuilder' => new ClientBuilder(),
                 'uriFactory' => Psr17FactoryDiscovery::findUriFactory(),
-                'apiVersion' => 'v3',
-                'uri' => 'https://api.paystack.com/v3',
+                'apiVersion' => 'v1',
+                'uri' => 'https://api.paystack.co',
             ]
         );
 

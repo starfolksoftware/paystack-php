@@ -4,8 +4,7 @@ namespace StarfolkSoftware\Paystack\API;
 
 use StarfolkSoftware\Paystack\Abstracts\ApiAbstract;
 use StarfolkSoftware\Paystack\HttpClient\Message\ResponseMediator;
-use StarfolkSoftware\Paystack\Options\CreatePlanOptions;
-use StarfolkSoftware\Paystack\Options\UpdatePlanOptions;
+use StarfolkSoftware\Paystack\Options\Plan as PlanOptions;
 
 final class Plan extends ApiAbstract
 {
@@ -13,14 +12,13 @@ final class Plan extends ApiAbstract
      * Creates a new plan
      * 
      * @param array $params
-     * 
      * @return array
      */
     public function create(array $params): array
     {
-        $options = new CreatePlanOptions($params);
+        $options = new PlanOptions\CreateOptions($params);
 
-        $response = $this->httpClient->post('/payment-plans', [
+        $response = $this->httpClient->post('/plan', [
             'json' => json_encode($options->all()),
         ]);
 
@@ -30,11 +28,16 @@ final class Plan extends ApiAbstract
     /**
      * Retrieves all plans
      * 
+     * @param array $params
      * @return array
      */
-    public function all(): array
+    public function all(array $params): array
     {
-        $response = $this->httpClient->get('/payment-plans');
+        $options = new PlanOptions\ReadAllOptions($params);
+
+        $response = $this->httpClient->get('/plan', [
+            'json' => json_encode($options->all())
+        ]);
 
         return ResponseMediator::getContent($response);
     }
@@ -42,13 +45,12 @@ final class Plan extends ApiAbstract
     /**
      * Retrieves a plan
      * 
-     * @param int $id
-     * 
+     * @param string $id
      * @return array
      */
-    public function find(int $id): array
+    public function find(string $id): array
     {
-        $response = $this->httpClient->get("/payment-plans/{$id}");
+        $response = $this->httpClient->get("/plan/{$id}");
 
         return ResponseMediator::getContent($response);
     }
@@ -56,32 +58,17 @@ final class Plan extends ApiAbstract
     /**
      * Updates a plan
      * 
-     * @param int $id
+     * @param string $id
      * @param array $params
-     * 
      * @return array
      */
-    public function update(int $id, array $params): array
+    public function update(string $id, array $params): array
     {
-        $options = new UpdatePlanOptions($params);
+        $options = new PlanOptions\UpdateOptions($params);
 
-        $response = $this->httpClient->put("/payment-plans/{$id}", [
+        $response = $this->httpClient->put("/plan/{$id}", [
             'json' => json_encode($options->all()),
         ]);
-
-        return ResponseMediator::getContent($response);
-    }
-
-    /**
-     * Cancel a plan
-     * 
-     * @param int $id
-     * 
-     * @return array
-     */
-    public function cancel(int $id): array
-    {
-        $response = $this->httpClient->post("/payment-plans/{$id}/cancel");
 
         return ResponseMediator::getContent($response);
     }

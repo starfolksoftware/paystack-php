@@ -6,7 +6,6 @@ use Http\Mock\Client as MockClient;
 use Http\Client\Common\HttpMethodsClientInterface;
 use Http\Client\Common\Plugin\BaseUriPlugin;
 use Http\Client\Common\Plugin\HeaderDefaultsPlugin;
-use StarfolkSoftware\Paystack\API\Plan;
 
 /**
  * PHP Paystack client.
@@ -63,13 +62,33 @@ final class Client
     }
 
     /**
+     * Customer API
+     * 
+     * @return API\Customer
+     */
+    protected function customers(): API\Customer
+    {
+        return new API\Customer($this);
+    }
+
+    /**
      * Plan API
      * 
-     * @return Plan
+     * @return API\Plan
      */
-    protected function plans(): Plan
+    protected function plans(): API\Plan
     {
-        return new Plan($this);
+        return new API\Plan($this);
+    }
+
+    /**
+     * Subscription API
+     * 
+     * @return API\Subscription
+     */
+    protected function subscriptions(): API\Subscription
+    {
+        return new API\Subscription($this);
     }
 
     /**

@@ -72,6 +72,16 @@ final class Client
     }
 
     /**
+     * Invoice API
+     * 
+     * @return API\Invoice
+     */
+    protected function invoices(): API\Invoice
+    {
+        return new API\Invoice($this);
+    }
+
+    /**
      * Plan API
      * 
      * @return API\Plan

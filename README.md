@@ -42,7 +42,7 @@ require_once "vendor/autoload.php";
 use StarfolkSoftware\Paystack\Client as PaystackClient;
 
 $paystack = new PaystackClient([
-    'secretKey' => 'FLWSECK_TEST-*******',
+    'secretKey' => '*******',
 ]);
 
 $response = $paystack
@@ -55,6 +55,14 @@ var_dump($response['data'][0]);
 array(21) { ... }
 ...
 ```
+
+## Available endpoints
+
+- [x] Customer
+- [x] Invoice
+- [x] Plan
+- [x] Subscription
+- [x] Transaction
 
 ## Documentation
 

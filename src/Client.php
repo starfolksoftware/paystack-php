@@ -92,6 +92,16 @@ final class Client
     }
 
     /**
+     * Transaction API
+     * 
+     * @return API\Transaction
+     */
+    protected function transactions(): API\Transaction
+    {
+        return new API\Transaction($this);
+    }
+
+    /**
      * Read data from inaccessible (protected or private) 
      * or non-existing properties.
      * 

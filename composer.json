@@ -30,13 +30,13 @@
         "psr/http-client": "^1.0.1",
         "psr/http-client-implementation": "^1.0",
         "psr/http-factory": "^1.0.1",
-        "symfony/options-resolver": "^5.2"
+        "symfony/options-resolver": "^6.2"
     },
     "require-dev": {
-        "php-http/curl-client": "^2.1",
+        "php-http/curl-client": "^2.2",
         "php-http/mock-client": "^1.5",
         "phpunit/phpunit": "^9.5",
-        "symfony/var-dumper": "^5.1"
+        "symfony/var-dumper": "^6.2"
     },
     "scripts": {
         "test": "phpunit"

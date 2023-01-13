@@ -60,10 +60,10 @@ final class Subscription extends ApiAbstract
      * Enable a subscription
      * 
      * @param string $code Subscription code
-     * @param array $token Email token
+     * @param string $token Email token
      * @return array
      */
-    public function enable(string $code, array $token): array
+    public function enable(string $code, string $token): array
     {
         $response = $this->httpClient->put("/subscription/enable", [
             'json' => json_encode(['code' => $code, 'token' => $token]),
@@ -76,10 +76,10 @@ final class Subscription extends ApiAbstract
      * Disable a subscription
      * 
      * @param string $code Subscription code
-     * @param array $token Email token
+     * @param string $token Email token
      * @return array
      */
-    public function disable(string $code, array $token): array
+    public function disable(string $code, string $token): array
     {
         $response = $this->httpClient->put("/subscription/disable", [
             'json' => json_encode(['code' => $code, 'token' => $token]),

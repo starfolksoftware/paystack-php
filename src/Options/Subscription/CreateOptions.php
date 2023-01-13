@@ -28,7 +28,7 @@ final class CreateOptions extends OptionsAbstract
 
         $resolver->define('authorization')
             ->allowedTypes('string')
-            ->info('The interval of the plan');
+            ->info("If customer has multiple authorizations, you can set the desired authorization you wish to use for this subscription here. If this is not supplied, the customer's most recent authorization would be used");
 
         $resolver->define('description')
             ->allowedTypes('string')

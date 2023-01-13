@@ -65,7 +65,7 @@ final class Subscription extends ApiAbstract
      */
     public function enable(string $code, string $token): array
     {
-        $response = $this->httpClient->put("/subscription/enable", [
+        $response = $this->httpClient->post("/subscription/enable", [
             'json' => json_encode(['code' => $code, 'token' => $token]),
         ]);
 
@@ -81,7 +81,7 @@ final class Subscription extends ApiAbstract
      */
     public function disable(string $code, string $token): array
     {
-        $response = $this->httpClient->put("/subscription/disable", [
+        $response = $this->httpClient->post("/subscription/disable", [
             'json' => json_encode(['code' => $code, 'token' => $token]),
         ]);
 

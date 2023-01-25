@@ -18,9 +18,7 @@ final class Subscription extends ApiAbstract
     {
         $options = new SubscriptionOptions\CreateOptions($params);
 
-        $response = $this->httpClient->post('/subscription', [
-            'json' => json_encode($options->all()),
-        ]);
+        $response = $this->httpClient->post('/subscription', body: json_encode($options->all()));
 
         return ResponseMediator::getContent($response);
     }
@@ -36,7 +34,7 @@ final class Subscription extends ApiAbstract
         $options = new SubscriptionOptions\ReadAllOptions($params);
 
         $response = $this->httpClient->get('/subscription', [
-            'json' => json_encode($options->all())
+            'query' => $options->all()
         ]);
 
         return ResponseMediator::getContent($response);
@@ -65,9 +63,7 @@ final class Subscription extends ApiAbstract
      */
     public function enable(string $code, string $token): array
     {
-        $response = $this->httpClient->post("/subscription/enable", [
-            'json' => json_encode(['code' => $code, 'token' => $token]),
-        ]);
+        $response = $this->httpClient->post("/subscription/enable", body: json_encode(['code' => $code, 'token' => $token]));
 
         return ResponseMediator::getContent($response);
     }
@@ -81,9 +77,7 @@ final class Subscription extends ApiAbstract
      */
     public function disable(string $code, string $token): array
     {
-        $response = $this->httpClient->post("/subscription/disable", [
-            'json' => json_encode(['code' => $code, 'token' => $token]),
-        ]);
+        $response = $this->httpClient->post("/subscription/disable", body: json_encode(['code' => $code, 'token' => $token]));
 
         return ResponseMediator::getContent($response);
     }

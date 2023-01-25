@@ -18,9 +18,7 @@ final class Customer extends ApiAbstract
     {
         $options = new CustomerOptions\CreateOptions($params);
 
-        $response = $this->httpClient->post('/customer', [
-            'json' => json_encode($options->all()),
-        ]);
+        $response = $this->httpClient->post('/customer', body: json_encode($options->all()));
 
         return ResponseMediator::getContent($response);
     }
@@ -36,7 +34,7 @@ final class Customer extends ApiAbstract
         $options = new CustomerOptions\ReadAllOptions($params);
 
         $response = $this->httpClient->get('/customer', [
-            'json' => json_encode($options->all())
+            'query' => $options->all()
         ]);
 
         return ResponseMediator::getContent($response);
@@ -66,9 +64,7 @@ final class Customer extends ApiAbstract
     {
         $options = new CustomerOptions\UpdateOptions($params);
 
-        $response = $this->httpClient->put("/customer/{$id}", [
-            'json' => json_encode($options->all()),
-        ]);
+        $response = $this->httpClient->put("/customer/{$id}", body: json_encode($options->all()));
 
         return ResponseMediator::getContent($response);
     }
@@ -84,9 +80,7 @@ final class Customer extends ApiAbstract
     {
         $options = new CustomerOptions\ValidateOptions($params);
 
-        $response = $this->httpClient->post("/customer/{$code}/identification", [
-            'json' => json_encode($options->all()),
-        ]);
+        $response = $this->httpClient->post("/customer/{$code}/identification", body: json_encode($options->all()));
 
         return ResponseMediator::getContent($response);
     }
@@ -100,9 +94,7 @@ final class Customer extends ApiAbstract
      */
     public function setRiskAction(string $code, string $riskAction = 'default'): array
     {
-        $response = $this->httpClient->post("/customer/set_risk_action", [
-            'json' => json_encode(['code' => $code, 'risk_action' => $riskAction]),
-        ]);
+        $response = $this->httpClient->post("/customer/set_risk_action", body: json_encode(['code' => $code, 'risk_action' => $riskAction]));
 
         return ResponseMediator::getContent($response);
     }
@@ -115,9 +107,7 @@ final class Customer extends ApiAbstract
      */
     public function deactivateAuthorization(string $authorizationCode): array
     {
-        $response = $this->httpClient->post("/customer/deactivate_authorization", [
-            'json' => json_encode(['authorization_code' => $authorizationCode]),
-        ]);
+        $response = $this->httpClient->post("/customer/deactivate_authorization", body: json_encode(['authorization_code' => $authorizationCode]));
 
         return ResponseMediator::getContent($response);
     }

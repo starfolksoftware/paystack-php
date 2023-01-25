@@ -18,9 +18,7 @@ final class Invoice extends ApiAbstract
     {
         $options = new InvoiceOptions\CreateOptions($params);
 
-        $response = $this->httpClient->post('/paymentrequest', [
-            'json' => json_encode($options->all()),
-        ]);
+        $response = $this->httpClient->post('/paymentrequest', body: json_encode($options->all()));
 
         return ResponseMediator::getContent($response);
     }
@@ -36,7 +34,7 @@ final class Invoice extends ApiAbstract
         $options = new InvoiceOptions\ReadAllOptions($params);
 
         $response = $this->httpClient->get('/paymentrequest', [
-            'json' => json_encode($options->all())
+            'query' => $options->all()
         ]);
 
         return ResponseMediator::getContent($response);
@@ -130,9 +128,7 @@ final class Invoice extends ApiAbstract
     {
         $options = new InvoiceOptions\UpdateOptions($params);
 
-        $response = $this->httpClient->put("/paymentrequest/{$id}", [
-            'json' => json_encode($options->all()),
-        ]);
+        $response = $this->httpClient->put("/paymentrequest/{$id}", body: json_encode($options->all()));
 
         return ResponseMediator::getContent($response);
     }

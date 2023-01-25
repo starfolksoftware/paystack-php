@@ -18,9 +18,7 @@ final class Transaction extends ApiAbstract
     {
         $options = new TransactionOptions\InitializeOptions($params);
 
-        $response = $this->httpClient->post('/transaction/initialize', [
-            'json' => json_encode($options->all()),
-        ]);
+        $response = $this->httpClient->post('/transaction/initialize', body: json_encode($options->all()));
 
         return ResponseMediator::getContent($response);
     }
@@ -49,7 +47,7 @@ final class Transaction extends ApiAbstract
         $options = new TransactionOptions\ReadAllOptions($params);
 
         $response = $this->httpClient->get('/transaction', [
-            'json' => json_encode($options->all())
+            'query' => $options->all()
         ]);
 
         return ResponseMediator::getContent($response);
@@ -78,9 +76,7 @@ final class Transaction extends ApiAbstract
     {
         $options = new TransactionOptions\ChargeOptions($params);
 
-        $response = $this->httpClient->post('/transaction/charge_authorization', [
-            'json' => json_encode($options->all()),
-        ]);
+        $response = $this->httpClient->post('/transaction/charge_authorization', body: json_encode($options->all()));
 
         return ResponseMediator::getContent($response);
     }
@@ -96,14 +92,12 @@ final class Transaction extends ApiAbstract
      */
     public function checkAuthorization(string $amount, string $email, string $authorizationCode, string $currency)
     {
-        $response = $this->httpClient->post('/transaction/check_authorization', [
-            'json' => json_encode([
-                'amount' => $amount,
-                'email' => $email,
-                'authorization_code' => $authorizationCode,
-                'currency' => $currency,
-            ]),
-        ]);
+        $response = $this->httpClient->post('/transaction/check_authorization', body: json_encode([
+            'amount' => $amount,
+            'email' => $email,
+            'authorization_code' => $authorizationCode,
+            'currency' => $currency,
+        ]));
 
         return ResponseMediator::getContent($response);
     }
@@ -132,7 +126,7 @@ final class Transaction extends ApiAbstract
         $options = new TransactionOptions\StatsOptions($params);
 
         $response = $this->httpClient->get('/transaction/totals', [
-            'json' => json_encode($options->all())
+            'query' => $options->all()
         ]);
 
         return ResponseMediator::getContent($response);
@@ -149,7 +143,7 @@ final class Transaction extends ApiAbstract
         $options = new TransactionOptions\StatsOptions($params);
 
         $response = $this->httpClient->get('/transaction/export', [
-            'json' => json_encode($options->all())
+            'query' => $options->all()
         ]);
 
         return ResponseMediator::getContent($response);
@@ -165,9 +159,7 @@ final class Transaction extends ApiAbstract
     {
         $options = new TransactionOptions\PartialDebitOptions($params);
 
-        $response = $this->httpClient->post('/transaction/partial_debit', [
-            'json' => json_encode($options->all()),
-        ]);
+        $response = $this->httpClient->post('/transaction/partial_debit', body: json_encode($options->all()));
 
         return ResponseMediator::getContent($response);
     }

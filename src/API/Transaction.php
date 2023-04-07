@@ -6,7 +6,7 @@ use StarfolkSoftware\Paystack\Abstracts\ApiAbstract;
 use StarfolkSoftware\Paystack\HttpClient\Message\ResponseMediator;
 use StarfolkSoftware\Paystack\Options\Transaction as TransactionOptions;
 
-final class Transaction extends ApiAbstract
+class Transaction extends ApiAbstract
 {
     /**
      * Initialize Transaction

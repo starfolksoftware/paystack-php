@@ -7,7 +7,7 @@ use Psr\Http\Message\UriFactoryInterface;
 use Psr\Http\Message\UriInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-final class Options
+class Options
 {
     private array $options;
 

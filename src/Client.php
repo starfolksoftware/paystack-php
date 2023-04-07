@@ -14,7 +14,7 @@ use Http\Client\Common\Plugin\HeaderDefaultsPlugin;
  *
  * Website: http://github.com/starfolksoftware/paystack-php
  */
-final class Client
+class Client
 {
     /** @var ClientBuilder $clientBuilder */
     private ClientBuilder $clientBuilder;

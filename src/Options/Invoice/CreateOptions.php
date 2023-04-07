@@ -5,7 +5,7 @@ namespace StarfolkSoftware\Paystack\Options\Invoice;
 use StarfolkSoftware\Paystack\Abstracts\OptionsAbstract;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-final class CreateOptions extends OptionsAbstract
+class CreateOptions extends OptionsAbstract
 {
     /**
      * Set defaults, allowed types and values of the options.

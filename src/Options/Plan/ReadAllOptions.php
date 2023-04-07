@@ -5,7 +5,7 @@ namespace StarfolkSoftware\Paystack\Options\Plan;
 use StarfolkSoftware\Paystack\Abstracts\OptionsAbstract;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-final class ReadAllOptions extends OptionsAbstract
+class ReadAllOptions extends OptionsAbstract
 {
     /**
      * Set defaults, allowed types and values of the options.

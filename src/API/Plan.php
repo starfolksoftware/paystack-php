@@ -6,7 +6,7 @@ use StarfolkSoftware\Paystack\Abstracts\ApiAbstract;
 use StarfolkSoftware\Paystack\HttpClient\Message\ResponseMediator;
 use StarfolkSoftware\Paystack\Options\Plan as PlanOptions;
 
-final class Plan extends ApiAbstract
+class Plan extends ApiAbstract
 {
     /**
      * Creates a new plan

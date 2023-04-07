@@ -6,7 +6,7 @@ use StarfolkSoftware\Paystack\Abstracts\ApiAbstract;
 use StarfolkSoftware\Paystack\HttpClient\Message\ResponseMediator;
 use StarfolkSoftware\Paystack\Options\Customer as CustomerOptions;
 
-final class Customer extends ApiAbstract
+class Customer extends ApiAbstract
 {
     /**
      * Creates a new customer

@@ -12,7 +12,7 @@ use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 
-final class ClientBuilder
+class ClientBuilder
 {
     private ClientInterface $httpClient;
 

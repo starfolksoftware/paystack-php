@@ -5,7 +5,7 @@ namespace StarfolkSoftware\Paystack\Options\Transaction;
 use StarfolkSoftware\Paystack\Abstracts\OptionsAbstract;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-final class ExportOptions extends OptionsAbstract
+class ExportOptions extends OptionsAbstract
 {
     /**
      * Set defaults, allowed types and values of the options.

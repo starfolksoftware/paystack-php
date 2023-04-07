@@ -4,7 +4,7 @@ namespace StarfolkSoftware\Paystack\HttpClient\Message;
 
 use Psr\Http\Message\ResponseInterface;
 
-final class ResponseMediator
+class ResponseMediator
 {
     public static function getContent(ResponseInterface $response): array
     {

@@ -6,7 +6,7 @@ use StarfolkSoftware\Paystack\Abstracts\ApiAbstract;
 use StarfolkSoftware\Paystack\HttpClient\Message\ResponseMediator;
 use StarfolkSoftware\Paystack\Options\Invoice as InvoiceOptions;
 
-final class Invoice extends ApiAbstract
+class Invoice extends ApiAbstract
 {
     /**
      * Creates a new invoice

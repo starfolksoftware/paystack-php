@@ -6,7 +6,7 @@ use StarfolkSoftware\Paystack\Abstracts\ApiAbstract;
 use StarfolkSoftware\Paystack\HttpClient\Message\ResponseMediator;
 use StarfolkSoftware\Paystack\Options\Subscription as SubscriptionOptions;
 
-final class Subscription extends ApiAbstract
+class Subscription extends ApiAbstract
 {
     /**
      * Creates a new subscription

@@ -24,7 +24,7 @@
     },
     "require": {
         "php": "^8.0",
-        "laminas/laminas-diactoros": "^2.25.1",
+        "laminas/laminas-diactoros": "^3.5.0",
         "php-http/client-common": "^2.3",
         "php-http/discovery": "^1.14.1",
         "psr/http-client": "^1.0.1",

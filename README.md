@@ -1,6 +1,6 @@
 # Paystack PHP bindings
 
-[![Latest Stable Version](http://poser.pugx.org/starfolksoftware/paystack-php/v)](https://packagist.org/packages/starfolksoftware/paystack-php) [![Total Downloads](http://poser.pugx.org/starfolksoftware/paystack-php/downloads)](https://packagist.org/packages/starfolksoftware/paystack-php) [![Latest Unstable Version](http://poser.pugx.org/starfolksoftware/paystack-php/v/unstable)](https://packagist.org/packages/starfolksoftware/paystack-php) [![License](http://poser.pugx.org/starfolksoftware/paystack-php/license)](https://packagist.org/packages/starfolksoftware/paystack-php) [![PHP Version Require](http://poser.pugx.org/starfolksoftware/paystack-php/require/php)](https://packagist.org/packages/starfolksoftware/paystack-php)
+[![Latest Stable Version](http://poser.pugx.org/starfolksoftware/paystack-php/v)](https://packagist.org/packages/starfolksoftware/paystack-php) [![Total Downloads](http://poser.pugx.org/starfolksoftware/paystack-php/downloads)](https://packagist.org/packages/starfolksoftware/paystack-php) [![License](http://poser.pugx.org/starfolksoftware/paystack-php/license)](https://packagist.org/packages/starfolksoftware/paystack-php) [![PHP Version Require](http://poser.pugx.org/starfolksoftware/paystack-php/require/php)](https://packagist.org/packages/starfolksoftware/paystack-php)
 
 The Paystack PHP library provides convenient access to the Paystack API from
 applications written in the PHP language. It includes a pre-defined set of

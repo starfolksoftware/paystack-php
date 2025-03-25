@@ -20,6 +20,10 @@ You can install the bindings via [Composer](http://getcomposer.org/). Run the fo
 composer require starfolksoftware/paystack-php
 ```
 
+```bash
+composer require php-http/guzzle7-adapter
+```
+
 To use the bindings, use Composer's [autoload](https://getcomposer.org/doc/01-basic-usage.md#autoloading):
 
 ```php

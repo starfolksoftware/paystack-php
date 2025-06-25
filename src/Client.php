@@ -18,6 +18,9 @@ class Client
 {
     /** @var ClientBuilder $clientBuilder */
     private ClientBuilder $clientBuilder;
+    
+    /** @var string $apiVersion */
+    private string $apiVersion;
 
     /**
      * Intantiate the client class
@@ -109,6 +112,16 @@ class Client
     protected function transactions(): API\Transaction
     {
         return new API\Transaction($this);
+    }
+
+    /**
+     * PaymentRequest API
+     * 
+     * @return API\PaymentRequest
+     */
+    protected function paymentRequests(): API\PaymentRequest
+    {
+        return new API\PaymentRequest($this);
     }
 
     /**

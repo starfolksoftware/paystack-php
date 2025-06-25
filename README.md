@@ -60,10 +60,66 @@ array(21) { ... }
 ...
 ```
 
+### Using Payment Requests
+
+```php
+<?php
+
+require_once "vendor/autoload.php";
+
+use StarfolkSoftware\Paystack\Client as PaystackClient;
+
+$paystack = new PaystackClient([
+    'secretKey' => '*******',
+]);
+
+// Create a payment request
+$response = $paystack->paymentRequests->create([
+    'description' => 'a test invoice',
+    'line_items' => [
+        ['name' => 'item 1', 'amount' => 20000],
+        ['name' => 'item 2', 'amount' => 20000]
+    ],
+    'tax' => [
+        ['name' => 'VAT', 'amount' => 2000]
+    ],
+    'customer' => 'CUS_xwaj0txjryg393b',
+    'due_date' => '2025-07-08'
+]);
+
+// List payment requests
+$paymentRequests = $paystack->paymentRequests->all(['page' => 1]);
+
+// Fetch a specific payment request
+$paymentRequest = $paystack->paymentRequests->fetch('PRQ_1weqqsn2wwzgft8');
+
+// Verify a payment request
+$verification = $paystack->paymentRequests->verify('PRQ_1weqqsn2wwzgft8');
+
+// Send notification for a payment request
+$notification = $paystack->paymentRequests->sendNotification('PRQ_1weqqsn2wwzgft8');
+
+// Get payment request totals
+$totals = $paystack->paymentRequests->totals();
+
+// Finalize a draft payment request
+$finalized = $paystack->paymentRequests->finalize('PRQ_1weqqsn2wwzgft8', ['send_notification' => true]);
+
+// Update a payment request
+$updated = $paystack->paymentRequests->update('PRQ_1weqqsn2wwzgft8', [
+    'description' => 'Updated test invoice',
+    'due_date' => '2025-07-15'
+]);
+
+// Archive a payment request
+$archived = $paystack->paymentRequests->archive('PRQ_1weqqsn2wwzgft8');
+```
+
 ## Available endpoints
 
 - [x] Customer
 - [x] Invoice
+- [x] Payment Request
 - [x] Plan
 - [x] Subscription
 - [x] Transaction

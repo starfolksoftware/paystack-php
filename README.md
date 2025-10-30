@@ -21,6 +21,7 @@ A modern, developer-friendly PHP SDK for the [Paystack API](https://paystack.com
 - [Examples](examples/)
 - [Advanced Usage](docs/advanced-usage.md)
 - [Troubleshooting](docs/troubleshooting.md)
+- [Upgrade Guide (v1.x → v2.x)](UPGRADE.md)
 
 ## Table of Contents
 

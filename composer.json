@@ -20,7 +20,10 @@
         }
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
     },
     "require": {
         "php": "^8.0",
@@ -30,6 +33,7 @@
         "psr/http-client": "^1.0.1",
         "psr/http-client-implementation": "^1.0",
         "psr/http-factory": "^1.0.1",
+        "symfony/http-client": "^7.3",
         "symfony/options-resolver": "^6.2"
     },
     "require-dev": {

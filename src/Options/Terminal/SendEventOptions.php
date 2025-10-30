@@ -19,7 +19,7 @@ class SendEventOptions extends OptionsAbstract
         $resolver->define('type')
             ->required()
             ->allowedTypes('string')
-            ->allowedValues(['invoice', 'transaction'])
+            ->allowedValues('invoice', 'transaction')
             ->info('The type of event to push. We currently support invoice and transaction');
 
         $resolver->define('action')

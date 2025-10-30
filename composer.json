@@ -43,7 +43,7 @@
         "symfony/var-dumper": "^6.2"
     },
     "scripts": {
-        "test": "phpunit"
+        "test": "phpunit --testdox"
     },
     "minimum-stability": "stable",
     "prefer-stable": true,

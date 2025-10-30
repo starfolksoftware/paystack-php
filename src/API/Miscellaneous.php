@@ -15,9 +15,12 @@ class Miscellaneous extends ApiAbstract
      */
     public function listBanks(array $params = []): array
     {
-        $response = $this->httpClient->get('/bank', [
-            'query' => $params
-        ]);
+        $requestOptions = [];
+        if (!empty($params)) {
+            $requestOptions['query'] = $params;
+        }
+
+        $response = $this->httpClient->get('/bank', $requestOptions);
 
         return ResponseMediator::getContent($response);
     }

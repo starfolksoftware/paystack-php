@@ -26,7 +26,7 @@
         }
     },
     "require": {
-        "php": "^8.0",
+        "php": "^8.1",
         "laminas/laminas-diactoros": "^3.5.0",
         "php-http/client-common": "^2.3",
         "php-http/discovery": "^1.14.1",
@@ -37,9 +37,10 @@
         "symfony/options-resolver": "^6.2"
     },
     "require-dev": {
+        "nikic/php-parser": "^5.3",
         "php-http/curl-client": "^2.2",
         "php-http/mock-client": "^1.5",
-        "phpunit/phpunit": "^9.5",
+        "phpunit/phpunit": "^10.5",
         "symfony/var-dumper": "^6.2"
     },
     "scripts": {

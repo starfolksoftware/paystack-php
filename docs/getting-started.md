@@ -16,7 +16,7 @@ This guide will help you integrate Paystack payments into your PHP application u
 
 Before you begin, ensure you have:
 
-1. **PHP 8.0 or higher** installed on your system
+1. **PHP 8.1 or higher** installed on your system
 2. **Composer** for dependency management
 3. A **Paystack account** ([sign up here](https://dashboard.paystack.com/signup))
 4. Your **API keys** from the Paystack dashboard

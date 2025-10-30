@@ -36,7 +36,7 @@ composer require starfolksoftware/paystack-php
 2. **Check PHP Version:**
    ```bash
    php -v
-   # Ensure PHP 8.0 or higher
+   # Ensure PHP 8.1 or higher
    ```
 
 3. **Force Install with Dependencies:**

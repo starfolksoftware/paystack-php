@@ -15,7 +15,7 @@ This directory contains comprehensive examples demonstrating real-world usage pa
 
 ### Prerequisites
 
-1. **PHP 8.0 or higher**
+1. **PHP 8.1 or higher**
 2. **Composer** (for dependency management)
 3. **Paystack Account** ([sign up here](https://dashboard.paystack.com/signup))
 4. **Test API Keys** from your Paystack dashboard

@@ -1,0 +1,99 @@
+name: Tests
+
+on:
+  push:
+    branches: [ main, master, v1.x, v2.x ]
+  pull_request:
+    branches: [ main, master, v1.x, v2.x ]
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        php: [8.0, 8.1, 8.2, 8.3]
+        stability: [prefer-lowest, prefer-stable]
+
+    name: P${{ matrix.php }} - ${{ matrix.stability }} - ${{ matrix.os }}
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Cache dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.composer/cache/files
+        key: dependencies-php-${{ matrix.php }}-composer-${{ hashFiles('composer.json') }}
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php }}
+        extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick
+        coverage: xdebug
+
+    - name: Validate composer.json and composer.lock
+      run: composer validate --strict
+
+    - name: Install dependencies
+      run: composer update --${{ matrix.stability }} --prefer-dist --no-interaction
+
+    - name: Execute tests
+      run: composer test
+
+    - name: Upload coverage to Codecov
+      if: matrix.php == '8.2' && matrix.stability == 'prefer-stable'
+      uses: codecov/codecov-action@v3
+      with:
+        file: ./coverage.clover
+        fail_ci_if_error: false
+
+  code-quality:
+    runs-on: ubuntu-latest
+    name: Code Quality
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: 8.2
+        extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick
+
+    - name: Cache dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.composer/cache/files
+        key: dependencies-php-8.2-composer-${{ hashFiles('composer.json') }}
+
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-interaction
+
+    - name: Check syntax errors
+      run: find ./src -name "*.php" -print0 | xargs -0 -n1 -P8 php -l
+
+    - name: Check for security vulnerabilities
+      run: composer audit --no-dev
+
+    - name: Check if examples are working
+      run: |
+        if [ -d "examples" ]; then
+          echo "Found examples directory, checking syntax..."
+          find ./examples -name "*.php" -print0 | xargs -0 -n1 -P8 php -l
+        else
+          echo "No examples directory found, skipping..."
+        fi
+
+    - name: Archive test results
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: test-results-php-8.2
+        path: |
+          build/
+          coverage.clover
+        retention-days: 30

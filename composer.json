@@ -43,7 +43,7 @@
         "symfony/var-dumper": "^6.2"
     },
     "scripts": {
-        "test": "phpunit --testdox"
+        "test": "phpunit --testdox --coverage-text --coverage-clover=coverage.clover"
     },
     "minimum-stability": "stable",
     "prefer-stable": true,

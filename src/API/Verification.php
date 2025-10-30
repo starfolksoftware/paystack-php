@@ -4,19 +4,27 @@ namespace StarfolkSoftware\Paystack\API;
 
 use StarfolkSoftware\Paystack\Abstracts\ApiAbstract;
 use StarfolkSoftware\Paystack\HttpClient\Message\ResponseMediator;
+use StarfolkSoftware\Paystack\Options\Verification\{
+    ResolveAccountOptions,
+    ValidateAccountOptions
+};
 
 class Verification extends ApiAbstract
 {
     /**
      * Confirm an account belongs to the right customer
      * 
-     * @param array $params
+     * @param ResolveAccountOptions|array $options
      * @return array
      */
-    public function resolveAccount(array $params): array
+    public function resolveAccount(ResolveAccountOptions|array $options): array
     {
+        if (is_array($options)) {
+            $options = new ResolveAccountOptions($options);
+        }
+
         $response = $this->httpClient->get('/bank/resolve', [
-            'query' => $params
+            'query' => $options->all()
         ]);
 
         return ResponseMediator::getContent($response);
@@ -25,12 +33,16 @@ class Verification extends ApiAbstract
     /**
      * Confirm the authenticity of a customer's account number before sending money
      * 
-     * @param array $params
+     * @param ValidateAccountOptions|array $options
      * @return array
      */
-    public function validateAccount(array $params): array
+    public function validateAccount(ValidateAccountOptions|array $options): array
     {
-        $response = $this->httpClient->post('/bank/validate', body: json_encode($params));
+        if (is_array($options)) {
+            $options = new ValidateAccountOptions($options);
+        }
+
+        $response = $this->httpClient->post('/bank/validate', body: json_encode($options->all()));
 
         return ResponseMediator::getContent($response);
     }

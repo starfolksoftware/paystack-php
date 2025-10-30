@@ -4,6 +4,7 @@ namespace StarfolkSoftware\Paystack\API;
 
 use StarfolkSoftware\Paystack\Abstracts\ApiAbstract;
 use StarfolkSoftware\Paystack\HttpClient\Message\ResponseMediator;
+use StarfolkSoftware\Paystack\Options\BulkCharge as BulkChargeOptions;
 
 class BulkCharge extends ApiAbstract
 {
@@ -15,7 +16,9 @@ class BulkCharge extends ApiAbstract
      */
     public function initiate(array $params): array
     {
-        $response = $this->httpClient->post('/bulkcharge', body: json_encode($params));
+        $options = new BulkChargeOptions\InitiateOptions($params);
+
+        $response = $this->httpClient->post('/bulkcharge', body: json_encode($options->all()));
 
         return ResponseMediator::getContent($response);
     }
@@ -28,8 +31,10 @@ class BulkCharge extends ApiAbstract
      */
     public function all(array $params = []): array
     {
+        $options = new BulkChargeOptions\ReadAllOptions($params);
+
         $response = $this->httpClient->get('/bulkcharge', [
-            'query' => $params
+            'query' => $options->all()
         ]);
 
         return ResponseMediator::getContent($response);
@@ -57,8 +62,10 @@ class BulkCharge extends ApiAbstract
      */
     public function getCharges(string $idOrCode, array $params = []): array
     {
+        $options = new BulkChargeOptions\GetChargesOptions($params);
+
         $response = $this->httpClient->get("/bulkcharge/{$idOrCode}/charges", [
-            'query' => $params
+            'query' => $options->all()
         ]);
 
         return ResponseMediator::getContent($response);

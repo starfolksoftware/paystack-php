@@ -4,6 +4,7 @@ namespace StarfolkSoftware\Paystack\API;
 
 use StarfolkSoftware\Paystack\Abstracts\ApiAbstract;
 use StarfolkSoftware\Paystack\HttpClient\Message\ResponseMediator;
+use StarfolkSoftware\Paystack\Options\DedicatedVirtualAccount as DedicatedVirtualAccountOptions;
 
 class DedicatedVirtualAccount extends ApiAbstract
 {
@@ -15,7 +16,24 @@ class DedicatedVirtualAccount extends ApiAbstract
      */
     public function create(array $params): array
     {
-        $response = $this->httpClient->post('/dedicated_account', body: json_encode($params));
+        $options = new DedicatedVirtualAccountOptions\CreateOptions($params);
+
+        $response = $this->httpClient->post('/dedicated_account', body: json_encode($options->all()));
+
+        return ResponseMediator::getContent($response);
+    }
+
+    /**
+     * Assign a dedicated virtual account to a customer
+     * 
+     * @param array $params
+     * @return array
+     */
+    public function assign(array $params): array
+    {
+        $options = new DedicatedVirtualAccountOptions\AssignOptions($params);
+
+        $response = $this->httpClient->post('/dedicated_account/assign', body: json_encode($options->all()));
 
         return ResponseMediator::getContent($response);
     }
@@ -28,12 +46,11 @@ class DedicatedVirtualAccount extends ApiAbstract
      */
     public function all(array $params = []): array
     {
-        $requestOptions = [];
-        if (!empty($params)) {
-            $requestOptions['query'] = $params;
-        }
+        $options = new DedicatedVirtualAccountOptions\ReadAllOptions($params);
 
-        $response = $this->httpClient->get('/dedicated_account', $requestOptions);
+        $response = $this->httpClient->get('/dedicated_account', [
+            'query' => $options->all()
+        ]);
 
         return ResponseMediator::getContent($response);
     }
@@ -59,8 +76,10 @@ class DedicatedVirtualAccount extends ApiAbstract
      */
     public function requery(array $params): array
     {
+        $options = new DedicatedVirtualAccountOptions\RequeryOptions($params);
+
         $response = $this->httpClient->get('/dedicated_account/requery', [
-            'query' => $params
+            'query' => $options->all()
         ]);
 
         return ResponseMediator::getContent($response);
@@ -87,7 +106,9 @@ class DedicatedVirtualAccount extends ApiAbstract
      */
     public function split(array $params): array
     {
-        $response = $this->httpClient->post('/dedicated_account/split', body: json_encode($params));
+        $options = new DedicatedVirtualAccountOptions\SplitOptions($params);
+
+        $response = $this->httpClient->post('/dedicated_account/split', body: json_encode($options->all()));
 
         return ResponseMediator::getContent($response);
     }
@@ -100,7 +121,9 @@ class DedicatedVirtualAccount extends ApiAbstract
      */
     public function removeSplit(array $params): array
     {
-        $response = $this->httpClient->delete('/dedicated_account/split', body: json_encode($params));
+        $options = new DedicatedVirtualAccountOptions\RemoveSplitOptions($params);
+
+        $response = $this->httpClient->delete('/dedicated_account/split', body: json_encode($options->all()));
 
         return ResponseMediator::getContent($response);
     }

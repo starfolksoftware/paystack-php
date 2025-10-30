@@ -4,6 +4,7 @@ namespace StarfolkSoftware\Paystack\API;
 
 use StarfolkSoftware\Paystack\Abstracts\ApiAbstract;
 use StarfolkSoftware\Paystack\HttpClient\Message\ResponseMediator;
+use StarfolkSoftware\Paystack\Options\Integration\UpdateTimeoutOptions;
 
 class Integration extends ApiAbstract
 {
@@ -22,12 +23,16 @@ class Integration extends ApiAbstract
     /**
      * Update the payment session timeout on your integration
      * 
-     * @param array $params
+     * @param UpdateTimeoutOptions|array $options
      * @return array
      */
-    public function updateTimeout(array $params): array
+    public function updateTimeout(UpdateTimeoutOptions|array $options): array
     {
-        $response = $this->httpClient->put('/integration/payment_session_timeout', body: json_encode($params));
+        if (is_array($options)) {
+            $options = new UpdateTimeoutOptions($options);
+        }
+
+        $response = $this->httpClient->put('/integration/payment_session_timeout', body: json_encode($options->all()));
 
         return ResponseMediator::getContent($response);
     }

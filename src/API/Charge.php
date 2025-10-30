@@ -4,6 +4,7 @@ namespace StarfolkSoftware\Paystack\API;
 
 use StarfolkSoftware\Paystack\Abstracts\ApiAbstract;
 use StarfolkSoftware\Paystack\HttpClient\Message\ResponseMediator;
+use StarfolkSoftware\Paystack\Options\Charge as ChargeOptions;
 
 class Charge extends ApiAbstract
 {
@@ -15,7 +16,9 @@ class Charge extends ApiAbstract
      */
     public function create(array $params): array
     {
-        $response = $this->httpClient->post('/charge', body: json_encode($params));
+        $options = new ChargeOptions\CreateOptions($params);
+
+        $response = $this->httpClient->post('/charge', body: json_encode($options->all()));
 
         return ResponseMediator::getContent($response);
     }
@@ -28,7 +31,9 @@ class Charge extends ApiAbstract
      */
     public function submitPin(array $params): array
     {
-        $response = $this->httpClient->post('/charge/submit_pin', body: json_encode($params));
+        $options = new ChargeOptions\SubmitPinOptions($params);
+
+        $response = $this->httpClient->post('/charge/submit_pin', body: json_encode($options->all()));
 
         return ResponseMediator::getContent($response);
     }
@@ -41,7 +46,9 @@ class Charge extends ApiAbstract
      */
     public function submitOtp(array $params): array
     {
-        $response = $this->httpClient->post('/charge/submit_otp', body: json_encode($params));
+        $options = new ChargeOptions\SubmitOtpOptions($params);
+
+        $response = $this->httpClient->post('/charge/submit_otp', body: json_encode($options->all()));
 
         return ResponseMediator::getContent($response);
     }
@@ -54,7 +61,9 @@ class Charge extends ApiAbstract
      */
     public function submitPhone(array $params): array
     {
-        $response = $this->httpClient->post('/charge/submit_phone', body: json_encode($params));
+        $options = new ChargeOptions\SubmitPhoneOptions($params);
+
+        $response = $this->httpClient->post('/charge/submit_phone', body: json_encode($options->all()));
 
         return ResponseMediator::getContent($response);
     }
@@ -67,7 +76,9 @@ class Charge extends ApiAbstract
      */
     public function submitBirthday(array $params): array
     {
-        $response = $this->httpClient->post('/charge/submit_birthday', body: json_encode($params));
+        $options = new ChargeOptions\SubmitBirthdayOptions($params);
+
+        $response = $this->httpClient->post('/charge/submit_birthday', body: json_encode($options->all()));
 
         return ResponseMediator::getContent($response);
     }
@@ -80,7 +91,9 @@ class Charge extends ApiAbstract
      */
     public function submitAddress(array $params): array
     {
-        $response = $this->httpClient->post('/charge/submit_address', body: json_encode($params));
+        $options = new ChargeOptions\SubmitAddressOptions($params);
+
+        $response = $this->httpClient->post('/charge/submit_address', body: json_encode($options->all()));
 
         return ResponseMediator::getContent($response);
     }

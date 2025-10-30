@@ -5,6 +5,9 @@ namespace StarfolkSoftware\Paystack\API;
 use StarfolkSoftware\Paystack\Abstracts\ApiAbstract;
 use StarfolkSoftware\Paystack\HttpClient\Message\ResponseMediator;
 use StarfolkSoftware\Paystack\Options\Transaction as TransactionOptions;
+use StarfolkSoftware\Paystack\Response\Transaction\TransactionInitializeResponse;
+use StarfolkSoftware\Paystack\Response\PaystackResponse;
+use StarfolkSoftware\Paystack\Response\PaginatedResponse;
 
 class Transaction extends ApiAbstract
 {
@@ -24,6 +27,21 @@ class Transaction extends ApiAbstract
     }
 
     /**
+     * Initialize Transaction (typed response)
+     * 
+     * @param array $params
+     * @return TransactionInitializeResponse
+     */
+    public function initializeTyped(array $params): TransactionInitializeResponse
+    {
+        $options = new TransactionOptions\InitializeOptions($params);
+
+        $response = $this->httpClient->post('/transaction/initialize', body: json_encode($options->all()));
+
+        return ResponseMediator::getTransactionInitializeResponse($response);
+    }
+
+    /**
      * Confirm the status of a transaction
      * 
      * @param string $reference
@@ -34,6 +52,19 @@ class Transaction extends ApiAbstract
         $response = $this->httpClient->get("/transaction/verify/{$reference}");
 
         return ResponseMediator::getContent($response);
+    }
+
+    /**
+     * Confirm the status of a transaction (typed response)
+     * 
+     * @param string $reference
+     * @return PaystackResponse
+     */
+    public function verifyTyped(string $reference): PaystackResponse
+    {
+        $response = $this->httpClient->get("/transaction/verify/{$reference}");
+
+        return ResponseMediator::getTransactionResponse($response);
     }
 
     /**
@@ -51,6 +82,23 @@ class Transaction extends ApiAbstract
         ]);
 
         return ResponseMediator::getContent($response);
+    }
+
+    /**
+     * Retrieves all transactions (typed response)
+     * 
+     * @param array $params
+     * @return PaginatedResponse
+     */
+    public function allTyped(array $params): PaginatedResponse
+    {
+        $options = new TransactionOptions\ReadAllOptions($params);
+
+        $response = $this->httpClient->get('/transaction', [
+            'query' => $options->all()
+        ]);
+
+        return ResponseMediator::getTransactionListResponse($response);
     }
 
     /**

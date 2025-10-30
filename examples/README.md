@@ -40,7 +40,7 @@ This directory contains comprehensive examples demonstrating real-world usage pa
 
 ### SDK Feature Demonstrations
 
-#### 1. **improved_type_hinting_demo.php** - Enhanced Type Safety (v2.x)
+#### 1. **improved_type_hinting_demo.php** - Enhanced Type Safety (v2.x - Phase 1)
 **Perfect for:** Developers migrating to v2.x, IDE optimization, better development experience
 
 **What you'll learn:**
@@ -59,9 +59,31 @@ This directory contains comprehensive examples demonstrating real-world usage pa
 php examples/improved_type_hinting_demo.php
 ```
 
+#### 2. **typed_responses_demo.php** - Response DTOs (v2.x - Phase 2)
+**Perfect for:** Developers wanting structured, type-safe API responses
+
+**What you'll learn:**
+- Using response DTOs instead of generic arrays
+- Accessing typed data with full IDE support
+- Working with pagination and helper methods
+- Converting between array and typed responses
+- Backward compatibility strategies
+
+**Key Features:**
+- ✅ Customer, Transaction, and PaymentRequest DTOs
+- ✅ Strongly-typed response objects with autocomplete
+- ✅ Helper methods for common operations
+- ✅ DateTimeImmutable for dates, structured data
+- ✅ Pagination support with PaginationMeta
+- ✅ Shows old vs new approach side-by-side
+
+```bash
+php examples/typed_responses_demo.php
+```
+
 ### Core Payment Examples
 
-#### 2. **simple_payment_request.php** - Beginner-Friendly Introduction
+#### 3. **simple_payment_request.php** - Beginner-Friendly Introduction
 **Perfect for:** First-time users, basic invoice creation, learning the fundamentals
 
 **What you'll learn:**
@@ -80,7 +102,7 @@ php examples/improved_type_hinting_demo.php
 php examples/simple_payment_request.php
 ```
 
-#### 3. **payment_request_demo.php** - Complete API Showcase
+#### 4. **payment_request_demo.php** - Complete API Showcase
 **Perfect for:** Developers who need comprehensive API coverage
 
 **What you'll learn:**
@@ -101,7 +123,7 @@ php examples/payment_request_demo.php
 
 ### Business Workflow Examples
 
-#### 4. **invoice_workflow.php** - Professional Invoice Management
+#### 5. **invoice_workflow.php** - Professional Invoice Management
 **Perfect for:** Service providers, freelancers, B2B businesses
 
 **What you'll learn:**
@@ -122,7 +144,7 @@ php examples/payment_request_demo.php
 php examples/invoice_workflow.php
 ```
 
-#### 5. **recurring_billing.php** - Subscription & Recurring Payments
+#### 6. **recurring_billing.php** - Subscription & Recurring Payments
 **Perfect for:** SaaS platforms, subscription services, membership sites
 
 **What you'll learn:**
@@ -150,7 +172,8 @@ php examples/recurring_billing.php
 ### By Complexity Level
 
 #### **Beginner Level**
-- `improved_type_hinting_demo.php` - v2.x type safety features
+- `improved_type_hinting_demo.php` - v2.x type safety features (Phase 1)
+- `typed_responses_demo.php` - Response DTOs (Phase 2)
 - `simple_payment_request.php` - Basic payment request creation
 - Individual API method demonstrations
 
@@ -190,6 +213,7 @@ php examples/recurring_billing.php
 ```bash
 # Run from the project root directory
 php examples/improved_type_hinting_demo.php
+php examples/typed_responses_demo.php
 php examples/simple_payment_request.php
 php examples/invoice_workflow.php
 php examples/recurring_billing.php

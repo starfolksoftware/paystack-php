@@ -5,6 +5,8 @@ namespace StarfolkSoftware\Paystack\API;
 use StarfolkSoftware\Paystack\Abstracts\ApiAbstract;
 use StarfolkSoftware\Paystack\HttpClient\Message\ResponseMediator;
 use StarfolkSoftware\Paystack\Options\Customer as CustomerOptions;
+use StarfolkSoftware\Paystack\Response\PaystackResponse;
+use StarfolkSoftware\Paystack\Response\Customer\CustomerListResponse;
 
 class Customer extends ApiAbstract
 {
@@ -24,6 +26,21 @@ class Customer extends ApiAbstract
     }
 
     /**
+     * Creates a new customer (typed response)
+     * 
+     * @param array $params
+     * @return PaystackResponse
+     */
+    public function createTyped(array $params): PaystackResponse
+    {
+        $options = new CustomerOptions\CreateOptions($params);
+
+        $response = $this->httpClient->post('/customer', body: json_encode($options->all()));
+
+        return ResponseMediator::getCustomerResponse($response);
+    }
+
+    /**
      * Retrieves all customers
      * 
      * @param array $params
@@ -38,6 +55,23 @@ class Customer extends ApiAbstract
         ]);
 
         return ResponseMediator::getContent($response);
+    }
+
+    /**
+     * Retrieves all customers (typed response)
+     * 
+     * @param array $params
+     * @return CustomerListResponse
+     */
+    public function allTyped(array $params): CustomerListResponse
+    {
+        $options = new CustomerOptions\ReadAllOptions($params);
+
+        $response = $this->httpClient->get('/customer', [
+            'query' => $options->all()
+        ]);
+
+        return ResponseMediator::getCustomerListResponse($response);
     }
 
     /**

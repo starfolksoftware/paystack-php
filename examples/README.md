@@ -38,9 +38,30 @@ This directory contains comprehensive examples demonstrating real-world usage pa
 
 ## 📚 Available Examples
 
+### SDK Feature Demonstrations
+
+#### 1. **improved_type_hinting_demo.php** - Enhanced Type Safety (v2.x)
+**Perfect for:** Developers migrating to v2.x, IDE optimization, better development experience
+
+**What you'll learn:**
+- Improved type hinting and IDE support in v2.x
+- Direct method access vs magic property access
+- Better autocomplete and intellisense features
+- Backward compatibility with v1.x patterns
+
+**Key Features:**
+- ✅ Demonstrates all API endpoints with proper types
+- ✅ Shows migration path from v1.x to v2.x
+- ✅ Backward compatibility examples
+- ✅ IDE benefits and developer experience improvements
+
+```bash
+php examples/improved_type_hinting_demo.php
+```
+
 ### Core Payment Examples
 
-#### 1. **simple_payment_request.php** - Beginner-Friendly Introduction
+#### 2. **simple_payment_request.php** - Beginner-Friendly Introduction
 **Perfect for:** First-time users, basic invoice creation, learning the fundamentals
 
 **What you'll learn:**
@@ -59,7 +80,7 @@ This directory contains comprehensive examples demonstrating real-world usage pa
 php examples/simple_payment_request.php
 ```
 
-#### 2. **payment_request_demo.php** - Complete API Showcase
+#### 3. **payment_request_demo.php** - Complete API Showcase
 **Perfect for:** Developers who need comprehensive API coverage
 
 **What you'll learn:**
@@ -80,7 +101,7 @@ php examples/payment_request_demo.php
 
 ### Business Workflow Examples
 
-#### 3. **invoice_workflow.php** - Professional Invoice Management
+#### 4. **invoice_workflow.php** - Professional Invoice Management
 **Perfect for:** Service providers, freelancers, B2B businesses
 
 **What you'll learn:**
@@ -101,7 +122,7 @@ php examples/payment_request_demo.php
 php examples/invoice_workflow.php
 ```
 
-#### 4. **recurring_billing.php** - Subscription & Recurring Payments
+#### 5. **recurring_billing.php** - Subscription & Recurring Payments
 **Perfect for:** SaaS platforms, subscription services, membership sites
 
 **What you'll learn:**
@@ -129,6 +150,7 @@ php examples/recurring_billing.php
 ### By Complexity Level
 
 #### **Beginner Level**
+- `improved_type_hinting_demo.php` - v2.x type safety features
 - `simple_payment_request.php` - Basic payment request creation
 - Individual API method demonstrations
 
@@ -167,6 +189,7 @@ php examples/recurring_billing.php
 ### Method 1: Direct Execution
 ```bash
 # Run from the project root directory
+php examples/improved_type_hinting_demo.php
 php examples/simple_payment_request.php
 php examples/invoice_workflow.php
 php examples/recurring_billing.php

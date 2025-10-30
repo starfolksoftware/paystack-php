@@ -69,7 +69,7 @@ class Client
      * 
      * @return API\Customer
      */
-    protected function customers(): API\Customer
+    public function customers(): API\Customer
     {
         return new API\Customer($this);
     }
@@ -79,7 +79,7 @@ class Client
      * 
      * @return API\Invoice
      */
-    protected function invoices(): API\Invoice
+    public function invoices(): API\Invoice
     {
         return new API\Invoice($this);
     }
@@ -89,7 +89,7 @@ class Client
      * 
      * @return API\Plan
      */
-    protected function plans(): API\Plan
+    public function plans(): API\Plan
     {
         return new API\Plan($this);
     }
@@ -99,7 +99,7 @@ class Client
      * 
      * @return API\Subscription
      */
-    protected function subscriptions(): API\Subscription
+    public function subscriptions(): API\Subscription
     {
         return new API\Subscription($this);
     }
@@ -109,7 +109,7 @@ class Client
      * 
      * @return API\Transaction
      */
-    protected function transactions(): API\Transaction
+    public function transactions(): API\Transaction
     {
         return new API\Transaction($this);
     }
@@ -119,7 +119,7 @@ class Client
      * 
      * @return API\PaymentRequest
      */
-    protected function paymentRequests(): API\PaymentRequest
+    public function paymentRequests(): API\PaymentRequest
     {
         return new API\PaymentRequest($this);
     }
@@ -129,7 +129,7 @@ class Client
      * 
      * @return API\Split
      */
-    protected function splits(): API\Split
+    public function splits(): API\Split
     {
         return new API\Split($this);
     }
@@ -139,7 +139,7 @@ class Client
      * 
      * @return API\Terminal
      */
-    protected function terminals(): API\Terminal
+    public function terminals(): API\Terminal
     {
         return new API\Terminal($this);
     }
@@ -149,7 +149,7 @@ class Client
      * 
      * @return API\VirtualTerminal
      */
-    protected function virtualTerminals(): API\VirtualTerminal
+    public function virtualTerminals(): API\VirtualTerminal
     {
         return new API\VirtualTerminal($this);
     }
@@ -159,7 +159,7 @@ class Client
      * 
      * @return API\ApplePay
      */
-    protected function applePay(): API\ApplePay
+    public function applePay(): API\ApplePay
     {
         return new API\ApplePay($this);
     }
@@ -169,7 +169,7 @@ class Client
      * 
      * @return API\Subaccount
      */
-    protected function subaccounts(): API\Subaccount
+    public function subaccounts(): API\Subaccount
     {
         return new API\Subaccount($this);
     }
@@ -179,7 +179,7 @@ class Client
      * 
      * @return API\Product
      */
-    protected function products(): API\Product
+    public function products(): API\Product
     {
         return new API\Product($this);
     }
@@ -189,7 +189,7 @@ class Client
      * 
      * @return API\DirectDebit
      */
-    protected function directDebit(): API\DirectDebit
+    public function directDebit(): API\DirectDebit
     {
         return new API\DirectDebit($this);
     }
@@ -199,7 +199,7 @@ class Client
      * 
      * @return API\Integration
      */
-    protected function integration(): API\Integration
+    public function integration(): API\Integration
     {
         return new API\Integration($this);
     }
@@ -209,7 +209,7 @@ class Client
      * 
      * @return API\Miscellaneous
      */
-    protected function miscellaneous(): API\Miscellaneous
+    public function miscellaneous(): API\Miscellaneous
     {
         return new API\Miscellaneous($this);
     }
@@ -219,7 +219,7 @@ class Client
      * 
      * @return API\Verification
      */
-    protected function verification(): API\Verification
+    public function verification(): API\Verification
     {
         return new API\Verification($this);
     }
@@ -229,7 +229,7 @@ class Client
      * 
      * @return API\Transfer
      */
-    protected function transfers(): API\Transfer
+    public function transfers(): API\Transfer
     {
         return new API\Transfer($this);
     }
@@ -239,7 +239,7 @@ class Client
      * 
      * @return API\TransferRecipient
      */
-    protected function transferRecipients(): API\TransferRecipient
+    public function transferRecipients(): API\TransferRecipient
     {
         return new API\TransferRecipient($this);
     }
@@ -249,7 +249,7 @@ class Client
      * 
      * @return API\TransferControl
      */
-    protected function transferControl(): API\TransferControl
+    public function transferControl(): API\TransferControl
     {
         return new API\TransferControl($this);
     }
@@ -259,7 +259,7 @@ class Client
      * 
      * @return API\Charge
      */
-    protected function charges(): API\Charge
+    public function charges(): API\Charge
     {
         return new API\Charge($this);
     }
@@ -269,7 +269,7 @@ class Client
      * 
      * @return API\Dispute
      */
-    protected function disputes(): API\Dispute
+    public function disputes(): API\Dispute
     {
         return new API\Dispute($this);
     }
@@ -279,7 +279,7 @@ class Client
      * 
      * @return API\Refund
      */
-    protected function refunds(): API\Refund
+    public function refunds(): API\Refund
     {
         return new API\Refund($this);
     }
@@ -289,7 +289,7 @@ class Client
      * 
      * @return API\Settlement
      */
-    protected function settlements(): API\Settlement
+    public function settlements(): API\Settlement
     {
         return new API\Settlement($this);
     }
@@ -299,7 +299,7 @@ class Client
      * 
      * @return API\BulkCharge
      */
-    protected function bulkCharges(): API\BulkCharge
+    public function bulkCharges(): API\BulkCharge
     {
         return new API\BulkCharge($this);
     }
@@ -309,7 +309,7 @@ class Client
      * 
      * @return API\Page
      */
-    protected function pages(): API\Page
+    public function pages(): API\Page
     {
         return new API\Page($this);
     }
@@ -319,7 +319,7 @@ class Client
      * 
      * @return API\DedicatedVirtualAccount
      */
-    protected function dedicatedVirtualAccounts(): API\DedicatedVirtualAccount
+    public function dedicatedVirtualAccounts(): API\DedicatedVirtualAccount
     {
         return new API\DedicatedVirtualAccount($this);
     }

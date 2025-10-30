@@ -28,9 +28,12 @@ class ApplePay extends ApiAbstract
      */
     public function listDomains(array $params = []): array
     {
-        $response = $this->httpClient->get('/apple-pay/domain', [
-            'query' => $params
-        ]);
+        $requestOptions = [];
+        if (!empty($params)) {
+            $requestOptions['query'] = $params;
+        }
+
+        $response = $this->httpClient->get('/apple-pay/domain', $requestOptions);
 
         return ResponseMediator::getContent($response);
     }

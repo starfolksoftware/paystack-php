@@ -28,9 +28,12 @@ class DedicatedVirtualAccount extends ApiAbstract
      */
     public function all(array $params = []): array
     {
-        $response = $this->httpClient->get('/dedicated_account', [
-            'query' => $params
-        ]);
+        $requestOptions = [];
+        if (!empty($params)) {
+            $requestOptions['query'] = $params;
+        }
+
+        $response = $this->httpClient->get('/dedicated_account', $requestOptions);
 
         return ResponseMediator::getContent($response);
     }

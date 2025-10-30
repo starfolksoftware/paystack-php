@@ -28,9 +28,12 @@ class DirectDebit extends ApiAbstract
      */
     public function listMandateAuthorizations(array $params = []): array
     {
-        $response = $this->httpClient->get('/directdebit/mandate-authorizations', [
-            'query' => $params
-        ]);
+        $requestOptions = [];
+        if (!empty($params)) {
+            $requestOptions['query'] = $params;
+        }
+
+        $response = $this->httpClient->get('/directdebit/mandate-authorizations', $requestOptions);
 
         return ResponseMediator::getContent($response);
     }

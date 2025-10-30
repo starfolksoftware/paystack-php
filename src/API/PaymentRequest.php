@@ -5,6 +5,8 @@ namespace StarfolkSoftware\Paystack\API;
 use StarfolkSoftware\Paystack\Abstracts\ApiAbstract;
 use StarfolkSoftware\Paystack\HttpClient\Message\ResponseMediator;
 use StarfolkSoftware\Paystack\Options\PaymentRequest as PaymentRequestOptions;
+use StarfolkSoftware\Paystack\Response\PaystackResponse;
+use StarfolkSoftware\Paystack\Response\PaginatedResponse;
 
 class PaymentRequest extends ApiAbstract
 {
@@ -24,6 +26,21 @@ class PaymentRequest extends ApiAbstract
     }
 
     /**
+     * Create a payment request (typed response)
+     * 
+     * @param array $params
+     * @return PaystackResponse
+     */
+    public function createTyped(array $params): PaystackResponse
+    {
+        $options = new PaymentRequestOptions\CreateOptions($params);
+
+        $response = $this->httpClient->post('/paymentrequest', body: json_encode($options->all()));
+
+        return ResponseMediator::getPaymentRequestResponse($response);
+    }
+
+    /**
      * List payment requests
      * 
      * @param array $params
@@ -38,6 +55,23 @@ class PaymentRequest extends ApiAbstract
         ]);
 
         return ResponseMediator::getContent($response);
+    }
+
+    /**
+     * List payment requests (typed response)
+     * 
+     * @param array $params
+     * @return PaginatedResponse
+     */
+    public function allTyped(array $params = []): PaginatedResponse
+    {
+        $options = new PaymentRequestOptions\ReadAllOptions($params);
+
+        $response = $this->httpClient->get('/paymentrequest', [
+            'query' => $options->all()
+        ]);
+
+        return ResponseMediator::getPaymentRequestListResponse($response);
     }
 
     /**

@@ -2,29 +2,29 @@
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
     xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd" 
     backupGlobals="false" 
-    backupStaticAttributes="false" 
     bootstrap="tests/bootstrap.php"
     colors="true" 
-    convertErrorsToExceptions="true" 
-    convertNoticesToExceptions="true" 
-    convertWarningsToExceptions="true" 
     processIsolation="false" 
     stopOnFailure="false" 
     executionOrder="random" 
-    failOnWarning="true" 
     failOnRisky="true" 
     failOnEmptyTestSuite="true" 
     beStrictAboutOutputDuringTests="true" 
-    verbose="true">
+    displayDetailsOnTestsThatTriggerDeprecations="true"
+    displayDetailsOnTestsThatTriggerErrors="true"
+    displayDetailsOnTestsThatTriggerNotices="true"
+    displayDetailsOnTestsThatTriggerWarnings="true">
     <testsuites>
         <testsuite name="Test Suite">
             <directory>tests</directory>
         </testsuite>
     </testsuites>
-    <coverage>
+    <source>
         <include>
             <directory suffix=".php">./src</directory>
         </include>
+    </source>
+    <coverage>
         <report>
             <html outputDirectory="build/coverage" />
             <text outputFile="build/coverage.txt" />

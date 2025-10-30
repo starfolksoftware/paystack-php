@@ -1,0 +1,57 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: 8.2
+        extensions: dom, curl, libxml, mbstring, zip
+
+    - name: Cache dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.composer/cache/files
+        key: dependencies-php-8.2-composer-${{ hashFiles('composer.json') }}
+
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-interaction --no-dev
+
+    - name: Run tests
+      run: composer test
+
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        draft: false
+        prerelease: false
+
+    - name: Generate changelog
+      run: |
+        echo "## What's Changed" > CHANGELOG.md
+        git log --oneline --no-merges $(git describe --tags --abbrev=0 HEAD^)..HEAD >> CHANGELOG.md
+      
+    - name: Update release with changelog
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./CHANGELOG.md
+        asset_name: CHANGELOG.md
+        asset_content_type: text/markdown

@@ -69,7 +69,7 @@ class Client
      * 
      * @return API\Customer
      */
-    protected function customers(): API\Customer
+    public function customers(): API\Customer
     {
         return new API\Customer($this);
     }
@@ -79,7 +79,7 @@ class Client
      * 
      * @return API\Invoice
      */
-    protected function invoices(): API\Invoice
+    public function invoices(): API\Invoice
     {
         return new API\Invoice($this);
     }
@@ -89,7 +89,7 @@ class Client
      * 
      * @return API\Plan
      */
-    protected function plans(): API\Plan
+    public function plans(): API\Plan
     {
         return new API\Plan($this);
     }
@@ -99,7 +99,7 @@ class Client
      * 
      * @return API\Subscription
      */
-    protected function subscriptions(): API\Subscription
+    public function subscriptions(): API\Subscription
     {
         return new API\Subscription($this);
     }
@@ -109,7 +109,7 @@ class Client
      * 
      * @return API\Transaction
      */
-    protected function transactions(): API\Transaction
+    public function transactions(): API\Transaction
     {
         return new API\Transaction($this);
     }
@@ -119,9 +119,209 @@ class Client
      * 
      * @return API\PaymentRequest
      */
-    protected function paymentRequests(): API\PaymentRequest
+    public function paymentRequests(): API\PaymentRequest
     {
         return new API\PaymentRequest($this);
+    }
+
+    /**
+     * Split API
+     * 
+     * @return API\Split
+     */
+    public function splits(): API\Split
+    {
+        return new API\Split($this);
+    }
+
+    /**
+     * Terminal API
+     * 
+     * @return API\Terminal
+     */
+    public function terminals(): API\Terminal
+    {
+        return new API\Terminal($this);
+    }
+
+    /**
+     * VirtualTerminal API
+     * 
+     * @return API\VirtualTerminal
+     */
+    public function virtualTerminals(): API\VirtualTerminal
+    {
+        return new API\VirtualTerminal($this);
+    }
+
+    /**
+     * ApplePay API
+     * 
+     * @return API\ApplePay
+     */
+    public function applePay(): API\ApplePay
+    {
+        return new API\ApplePay($this);
+    }
+
+    /**
+     * Subaccount API
+     * 
+     * @return API\Subaccount
+     */
+    public function subaccounts(): API\Subaccount
+    {
+        return new API\Subaccount($this);
+    }
+
+    /**
+     * Product API
+     * 
+     * @return API\Product
+     */
+    public function products(): API\Product
+    {
+        return new API\Product($this);
+    }
+
+    /**
+     * DirectDebit API
+     * 
+     * @return API\DirectDebit
+     */
+    public function directDebit(): API\DirectDebit
+    {
+        return new API\DirectDebit($this);
+    }
+
+    /**
+     * Integration API
+     * 
+     * @return API\Integration
+     */
+    public function integration(): API\Integration
+    {
+        return new API\Integration($this);
+    }
+
+    /**
+     * Miscellaneous API
+     * 
+     * @return API\Miscellaneous
+     */
+    public function miscellaneous(): API\Miscellaneous
+    {
+        return new API\Miscellaneous($this);
+    }
+
+    /**
+     * Verification API
+     * 
+     * @return API\Verification
+     */
+    public function verification(): API\Verification
+    {
+        return new API\Verification($this);
+    }
+
+    /**
+     * Transfer API
+     * 
+     * @return API\Transfer
+     */
+    public function transfers(): API\Transfer
+    {
+        return new API\Transfer($this);
+    }
+
+    /**
+     * Transfer Recipient API
+     * 
+     * @return API\TransferRecipient
+     */
+    public function transferRecipients(): API\TransferRecipient
+    {
+        return new API\TransferRecipient($this);
+    }
+
+    /**
+     * Transfer Control API
+     * 
+     * @return API\TransferControl
+     */
+    public function transferControl(): API\TransferControl
+    {
+        return new API\TransferControl($this);
+    }
+
+    /**
+     * Charge API
+     * 
+     * @return API\Charge
+     */
+    public function charges(): API\Charge
+    {
+        return new API\Charge($this);
+    }
+
+    /**
+     * Dispute API
+     * 
+     * @return API\Dispute
+     */
+    public function disputes(): API\Dispute
+    {
+        return new API\Dispute($this);
+    }
+
+    /**
+     * Refund API
+     * 
+     * @return API\Refund
+     */
+    public function refunds(): API\Refund
+    {
+        return new API\Refund($this);
+    }
+
+    /**
+     * Settlement API
+     * 
+     * @return API\Settlement
+     */
+    public function settlements(): API\Settlement
+    {
+        return new API\Settlement($this);
+    }
+
+    /**
+     * Bulk Charge API
+     * 
+     * @return API\BulkCharge
+     */
+    public function bulkCharges(): API\BulkCharge
+    {
+        return new API\BulkCharge($this);
+    }
+
+    /**
+     * Page API
+     * 
+     * @return API\Page
+     */
+    public function pages(): API\Page
+    {
+        return new API\Page($this);
+    }
+
+    /**
+     * Dedicated Virtual Account API
+     * 
+     * @return API\DedicatedVirtualAccount
+     */
+    public function dedicatedVirtualAccounts(): API\DedicatedVirtualAccount
+    {
+        return new API\DedicatedVirtualAccount($this);
     }
 
     /**

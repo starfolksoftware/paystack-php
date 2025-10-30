@@ -19,7 +19,7 @@ class InitiateOptions extends OptionsAbstract
         $resolver->define('source')
             ->required()
             ->allowedTypes('string')
-            ->allowedValues(['balance'])
+            ->allowedValues('balance')
             ->info('Where should we transfer from? Only balance for now');
 
         $resolver->define('amount')

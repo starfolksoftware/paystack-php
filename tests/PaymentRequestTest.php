@@ -2,27 +2,11 @@
 
 namespace StarfolkSoftware\Paystack\Tests;
 
-use PHPUnit\Framework\TestCase as BaseTestCase;
-use StarfolkSoftware\Paystack\Client;
-use Http\Mock\Client as MockClient;
 use Laminas\Diactoros\Response;
 use Laminas\Diactoros\Stream;
 
-class PaymentRequestTest extends BaseTestCase
+class PaymentRequestTest extends TestCase
 {
-    private Client $client;
-    private MockClient $httpClient;
-
-    protected function setUp(): void
-    {
-        $this->httpClient = new MockClient();
-        
-        $this->client = new Client([
-            'secretKey' => 'secret',
-            'clientBuilder' => new \StarfolkSoftware\Paystack\ClientBuilder($this->httpClient),
-        ]);
-    }
-
     public function testCreatePaymentRequest(): void
     {
         $responseData = [
@@ -62,9 +46,9 @@ class PaymentRequestTest extends BaseTestCase
 
         $response = new Response($stream, 200, ['Content-Type' => 'application/json']);
         
-        $this->httpClient->addResponse($response);
+        $this->mockClient->addResponse($response);
         
-        $data = $this->client->paymentRequests->create([
+        $data = $this->client()->paymentRequests->create([
             'description' => 'a test invoice',
             'line_items' => [
                 ['name' => 'item 1', 'amount' => 20000],
@@ -77,7 +61,7 @@ class PaymentRequestTest extends BaseTestCase
             'due_date' => '2020-07-08'
         ]);
 
-        $sentRequest = $this->httpClient->getLastRequest();
+        $sentRequest = $this->mockClient->getLastRequest();
         
         $sentBody = $sentRequest->getBody()->__toString();
         
@@ -117,11 +101,11 @@ class PaymentRequestTest extends BaseTestCase
 
         $response = new Response($stream, 200, ['Content-Type' => 'application/json']);
         
-        $this->httpClient->addResponse($response);
+        $this->mockClient->addResponse($response);
         
-        $data = $this->client->paymentRequests->all(['page' => 1, 'perPage' => 50]);
+        $data = $this->client()->paymentRequests->all(['page' => 1, 'perPage' => 50]);
 
-        $sentRequest = $this->httpClient->getLastRequest();
+        $sentRequest = $this->mockClient->getLastRequest();
         
         $this->assertEquals('GET', $sentRequest->getMethod());
         $this->assertEquals('/paymentrequest', $sentRequest->getUri()->getPath());
@@ -149,11 +133,11 @@ class PaymentRequestTest extends BaseTestCase
 
         $response = new Response($stream, 200, ['Content-Type' => 'application/json']);
         
-        $this->httpClient->addResponse($response);
+        $this->mockClient->addResponse($response);
         
-        $data = $this->client->paymentRequests->fetch('PRQ_1weqqsn2wwzgft8');
+        $data = $this->client()->paymentRequests->fetch('PRQ_1weqqsn2wwzgft8');
 
-        $sentRequest = $this->httpClient->getLastRequest();
+        $sentRequest = $this->mockClient->getLastRequest();
         
         $this->assertEquals('GET', $sentRequest->getMethod());
         $this->assertEquals('/paymentrequest/PRQ_1weqqsn2wwzgft8', $sentRequest->getUri()->getPath());

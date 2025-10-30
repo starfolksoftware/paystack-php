@@ -16,16 +16,26 @@ class ListDomainsOptions extends OptionsAbstract
      */
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->define('use_cursor')
-            ->allowedTypes('bool')
-            ->info('Use cursor pagination instead of classic pagination');
+        $resolver->setDefined(['use_cursor', 'next', 'previous']);
+        $resolver->setAllowedTypes('use_cursor', ['bool', 'string']);
+        $resolver->setAllowedTypes('next', 'string');
+        $resolver->setAllowedTypes('previous', 'string');
+    }
 
-        $resolver->define('next')
-            ->allowedTypes('string')
-            ->info('A cursor that indicates your place in the list. It can be used to fetch the next page of the list');
-
-        $resolver->define('previous')
-            ->allowedTypes('string')
-            ->info('A cursor that indicates your place in the list. It can be used to fetch the previous page of the list');
+    /**
+     * Get the options converted for HTTP transmission.
+     * 
+     * @return array
+     */
+    public function all(): array
+    {
+        $options = parent::all();
+        
+        // Convert boolean to string for HTTP query parameters
+        if (isset($options['use_cursor'])) {
+            $options['use_cursor'] = $options['use_cursor'] ? 'true' : 'false';
+        }
+        
+        return $options;
     }
 }

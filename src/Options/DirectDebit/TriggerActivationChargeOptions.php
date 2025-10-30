@@ -17,7 +17,6 @@ class TriggerActivationChargeOptions extends OptionsAbstract
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->define('authorization_code')
-            ->required()
             ->allowedTypes('string')
             ->info('Authorization code of the authorization that was returned to you following successful payment');
 
@@ -38,5 +37,9 @@ class TriggerActivationChargeOptions extends OptionsAbstract
         $resolver->define('reference')
             ->allowedTypes('string')
             ->info('Unique transaction reference');
+
+        $resolver->define('mandate_code')
+            ->allowedTypes('string')
+            ->info('Mandate code for direct debit');
     }
 }

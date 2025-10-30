@@ -11,12 +11,14 @@ class Charge extends ApiAbstract
     /**
      * Initiate a payment by integrating the payment channel of choice
      * 
-     * @param array $params
+     * @param ChargeOptions\CreateOptions|array $options
      * @return array
      */
-    public function create(array $params): array
+    public function create(ChargeOptions\CreateOptions|array $options): array
     {
-        $options = new ChargeOptions\CreateOptions($params);
+        if (is_array($options)) {
+            $options = new ChargeOptions\CreateOptions($options);
+        }
 
         $response = $this->httpClient->post('/charge', body: json_encode($options->all()));
 
@@ -26,12 +28,14 @@ class Charge extends ApiAbstract
     /**
      * Submit PIN to continue a charge
      * 
-     * @param array $params
+     * @param ChargeOptions\SubmitPinOptions|array $options
      * @return array
      */
-    public function submitPin(array $params): array
+    public function submitPin(ChargeOptions\SubmitPinOptions|array $options): array
     {
-        $options = new ChargeOptions\SubmitPinOptions($params);
+        if (is_array($options)) {
+            $options = new ChargeOptions\SubmitPinOptions($options);
+        }
 
         $response = $this->httpClient->post('/charge/submit_pin', body: json_encode($options->all()));
 
@@ -41,12 +45,14 @@ class Charge extends ApiAbstract
     /**
      * Submit OTP to complete a charge
      * 
-     * @param array $params
+     * @param ChargeOptions\SubmitOtpOptions|array $options
      * @return array
      */
-    public function submitOtp(array $params): array
+    public function submitOtp(ChargeOptions\SubmitOtpOptions|array $options): array
     {
-        $options = new ChargeOptions\SubmitOtpOptions($params);
+        if (is_array($options)) {
+            $options = new ChargeOptions\SubmitOtpOptions($options);
+        }
 
         $response = $this->httpClient->post('/charge/submit_otp', body: json_encode($options->all()));
 
@@ -56,12 +62,14 @@ class Charge extends ApiAbstract
     /**
      * Submit phone when requested
      * 
-     * @param array $params
+     * @param ChargeOptions\SubmitPhoneOptions|array $options
      * @return array
      */
-    public function submitPhone(array $params): array
+    public function submitPhone(ChargeOptions\SubmitPhoneOptions|array $options): array
     {
-        $options = new ChargeOptions\SubmitPhoneOptions($params);
+        if (is_array($options)) {
+            $options = new ChargeOptions\SubmitPhoneOptions($options);
+        }
 
         $response = $this->httpClient->post('/charge/submit_phone', body: json_encode($options->all()));
 
@@ -71,12 +79,14 @@ class Charge extends ApiAbstract
     /**
      * Submit birthday when requested
      * 
-     * @param array $params
+     * @param ChargeOptions\SubmitBirthdayOptions|array $options
      * @return array
      */
-    public function submitBirthday(array $params): array
+    public function submitBirthday(ChargeOptions\SubmitBirthdayOptions|array $options): array
     {
-        $options = new ChargeOptions\SubmitBirthdayOptions($params);
+        if (is_array($options)) {
+            $options = new ChargeOptions\SubmitBirthdayOptions($options);
+        }
 
         $response = $this->httpClient->post('/charge/submit_birthday', body: json_encode($options->all()));
 
@@ -86,12 +96,14 @@ class Charge extends ApiAbstract
     /**
      * Submit address to continue charge
      * 
-     * @param array $params
+     * @param ChargeOptions\SubmitAddressOptions|array $options
      * @return array
      */
-    public function submitAddress(array $params): array
+    public function submitAddress(ChargeOptions\SubmitAddressOptions|array $options): array
     {
-        $options = new ChargeOptions\SubmitAddressOptions($params);
+        if (is_array($options)) {
+            $options = new ChargeOptions\SubmitAddressOptions($options);
+        }
 
         $response = $this->httpClient->post('/charge/submit_address', body: json_encode($options->all()));
 

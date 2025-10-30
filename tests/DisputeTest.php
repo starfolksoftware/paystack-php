@@ -4,6 +4,14 @@ namespace StarfolkSoftware\Paystack\Tests;
 
 use Laminas\Diactoros\Response;
 use Laminas\Diactoros\Stream;
+use StarfolkSoftware\Paystack\Options\Dispute\{
+    ReadAllOptions,
+    UpdateOptions,
+    AddEvidenceOptions,
+    GetUploadUrlOptions,
+    ResolveOptions,
+    ExportOptions
+};
 
 final class DisputeTest extends TestCase
 {
@@ -60,7 +68,8 @@ final class DisputeTest extends TestCase
         
         $this->mockClient->addResponse($response);
         
-        $data = $this->client()->disputes->all(['page' => 1, 'perPage' => 50]);
+        $options = new ReadAllOptions(['page' => 1, 'perPage' => 50]);
+        $data = $this->client()->disputes->all($options);
 
         $sentRequest = $this->mockClient->getLastRequest();
         
@@ -146,9 +155,10 @@ final class DisputeTest extends TestCase
         
         $this->mockClient->addResponse($response);
         
-        $data = $this->client()->disputes->update('827179', [
+        $options = new UpdateOptions([
             'refund_amount' => 25000
         ]);
+        $data = $this->client()->disputes->update('827179', $options);
 
         $sentRequest = $this->mockClient->getLastRequest();
         $sentBody = $sentRequest->getBody()->__toString();
@@ -180,6 +190,7 @@ final class DisputeTest extends TestCase
             'customer_email' => 'john.doe@example.com',
             'customer_name' => 'John Doe',
             'customer_phone' => '+2348012345678',
+            'service_details' => 'Product delivery service',
             'delivery_address' => '123 Main Street, Lagos, Nigeria',
             'delivery_date' => '2023-11-10'
         ]);
@@ -192,13 +203,15 @@ final class DisputeTest extends TestCase
         
         $this->mockClient->addResponse($response);
         
-        $data = $this->client()->disputes->addEvidence('827179', [
+        $options = new AddEvidenceOptions([
             'customer_email' => 'john.doe@example.com',
             'customer_name' => 'John Doe',
             'customer_phone' => '+2348012345678',
+            'service_details' => 'Product delivery service',
             'delivery_address' => '123 Main Street, Lagos, Nigeria',
             'delivery_date' => '2023-11-10'
         ]);
+        $data = $this->client()->disputes->addEvidence('827179', $options);
 
         $sentRequest = $this->mockClient->getLastRequest();
         $sentBody = $sentRequest->getBody()->__toString();
@@ -232,9 +245,10 @@ final class DisputeTest extends TestCase
         
         $this->mockClient->addResponse($response);
         
-        $data = $this->client()->disputes->getUploadUrl('827179', [
+        $options = new GetUploadUrlOptions([
             'upload_filename' => 'evidence_receipt.pdf'
         ]);
+        $data = $this->client()->disputes->getUploadUrl('827179', $options);
 
         $sentRequest = $this->mockClient->getLastRequest();
         $sentBody = $sentRequest->getBody()->__toString();
@@ -259,7 +273,7 @@ final class DisputeTest extends TestCase
         ];
 
         $expectedBody = json_encode([
-            'resolution' => 'merchant_accepted',
+            'resolution' => 'merchant-accepted',
             'message' => 'Customer contacted and resolved amicably',
             'refund_amount' => 0,
             'uploaded_filename' => 'evidence_receipt.pdf'
@@ -273,12 +287,13 @@ final class DisputeTest extends TestCase
         
         $this->mockClient->addResponse($response);
         
-        $data = $this->client()->disputes->resolve('827179', [
-            'resolution' => 'merchant_accepted',
+        $options = new ResolveOptions([
+            'resolution' => 'merchant-accepted',
             'message' => 'Customer contacted and resolved amicably',
             'refund_amount' => 0,
             'uploaded_filename' => 'evidence_receipt.pdf'
         ]);
+        $data = $this->client()->disputes->resolve('827179', $options);
 
         $sentRequest = $this->mockClient->getLastRequest();
         $sentBody = $sentRequest->getBody()->__toString();
@@ -308,7 +323,8 @@ final class DisputeTest extends TestCase
         
         $this->mockClient->addResponse($response);
         
-        $data = $this->client()->disputes->export(['from' => '2023-11-01', 'to' => '2023-11-16']);
+        $options = new ExportOptions(['from' => '2023-11-01', 'to' => '2023-11-16']);
+        $data = $this->client()->disputes->export($options);
 
         $sentRequest = $this->mockClient->getLastRequest();
         

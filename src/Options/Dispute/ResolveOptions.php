@@ -16,27 +16,16 @@ class ResolveOptions extends OptionsAbstract
      */
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->define('resolution')
-            ->required()
-            ->allowedTypes('string')
-            ->allowedValues(['merchant-accepted', 'declined'])
-            ->info('Dispute resolution. Accepted values: merchant-accepted, declined');
+        $resolver->setRequired(['resolution', 'message']);
+        
+        $resolver->setAllowedTypes('resolution', 'string');
+        $resolver->setAllowedValues('resolution', ['merchant-accepted', 'declined']);
+        
+        $resolver->setAllowedTypes('message', 'string');
 
-        $resolver->define('message')
-            ->required()
-            ->allowedTypes('string')
-            ->info('Reason for resolution');
-
-        $resolver->define('refund_amount')
-            ->allowedTypes('int')
-            ->info('The amount to refund, in kobo if currency is NGN, pesewas, if currency is GHS, and cents, if currency is ZAR');
-
-        $resolver->define('uploaded_filename')
-            ->allowedTypes('string')
-            ->info('Filename of attachment returned via response from upload url');
-
-        $resolver->define('evidence')
-            ->allowedTypes('int')
-            ->info('Evidence Id for fraud claims');
+        $resolver->setDefined(['refund_amount', 'uploaded_filename', 'evidence']);
+        $resolver->setAllowedTypes('refund_amount', 'int');
+        $resolver->setAllowedTypes('uploaded_filename', 'string');
+        $resolver->setAllowedTypes('evidence', 'int');
     }
 }

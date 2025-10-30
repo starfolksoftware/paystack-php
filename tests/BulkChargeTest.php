@@ -4,6 +4,11 @@ namespace StarfolkSoftware\Paystack\Tests;
 
 use Laminas\Diactoros\Response;
 use Laminas\Diactoros\Stream;
+use StarfolkSoftware\Paystack\Options\BulkCharge\{
+    InitiateOptions,
+    ReadAllOptions,
+    GetChargesOptions
+};
 
 final class BulkChargeTest extends TestCase
 {
@@ -29,15 +34,17 @@ final class BulkChargeTest extends TestCase
         ];
 
         $expectedBody = json_encode([
-            [
-                'authorization' => 'AUTH_6tmt288t0o',
-                'amount' => 50000,
-                'reference' => 'bulk_ref_001'
-            ],
-            [
-                'authorization' => 'AUTH_abc123def456',
-                'amount' => 75000,
-                'reference' => 'bulk_ref_002'
+            'charges' => [
+                [
+                    'authorization' => 'AUTH_6tmt288t0o',
+                    'amount' => 50000,
+                    'reference' => 'bulk_ref_001'
+                ],
+                [
+                    'authorization' => 'AUTH_abc123def456',
+                    'amount' => 75000,
+                    'reference' => 'bulk_ref_002'
+                ]
             ]
         ]);
 
@@ -49,18 +56,21 @@ final class BulkChargeTest extends TestCase
         
         $this->mockClient->addResponse($response);
         
-        $data = $this->client()->bulkCharges->initiate([
-            [
-                'authorization' => 'AUTH_6tmt288t0o',
-                'amount' => 50000,
-                'reference' => 'bulk_ref_001'
-            ],
-            [
-                'authorization' => 'AUTH_abc123def456',
-                'amount' => 75000,
-                'reference' => 'bulk_ref_002'
+        $options = new InitiateOptions([
+            'charges' => [
+                [
+                    'authorization' => 'AUTH_6tmt288t0o',
+                    'amount' => 50000,
+                    'reference' => 'bulk_ref_001'
+                ],
+                [
+                    'authorization' => 'AUTH_abc123def456',
+                    'amount' => 75000,
+                    'reference' => 'bulk_ref_002'
+                ]
             ]
         ]);
+        $data = $this->client()->bulkCharges->initiate($options);
 
         $sentRequest = $this->mockClient->getLastRequest();
         $sentBody = $sentRequest->getBody()->__toString();
@@ -105,7 +115,8 @@ final class BulkChargeTest extends TestCase
         
         $this->mockClient->addResponse($response);
         
-        $data = $this->client()->bulkCharges->all(['page' => 1, 'perPage' => 50]);
+        $options = new ReadAllOptions(['page' => 1, 'perPage' => 50]);
+        $data = $this->client()->bulkCharges->all($options);
 
         $sentRequest = $this->mockClient->getLastRequest();
         
@@ -208,7 +219,8 @@ final class BulkChargeTest extends TestCase
         
         $this->mockClient->addResponse($response);
         
-        $data = $this->client()->bulkCharges->getCharges('BCH_abc123def456', ['page' => 1]);
+        $options = new GetChargesOptions(['page' => 1]);
+        $data = $this->client()->bulkCharges->getCharges('BCH_abc123def456', $options);
 
         $sentRequest = $this->mockClient->getLastRequest();
         

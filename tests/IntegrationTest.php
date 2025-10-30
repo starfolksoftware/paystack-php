@@ -4,6 +4,7 @@ namespace StarfolkSoftware\Paystack\Tests;
 
 use Laminas\Diactoros\Response;
 use Laminas\Diactoros\Stream;
+use StarfolkSoftware\Paystack\Options\Integration\UpdateTimeoutOptions;
 
 final class IntegrationTest extends TestCase
 {
@@ -60,9 +61,10 @@ final class IntegrationTest extends TestCase
         
         $this->mockClient->addResponse($response);
         
-        $data = $this->client()->integration->updateTimeout([
+        $options = new UpdateTimeoutOptions([
             'timeout' => 60
         ]);
+        $data = $this->client()->integration->updateTimeout($options);
 
         $sentRequest = $this->mockClient->getLastRequest();
         $sentBody = $sentRequest->getBody()->__toString();

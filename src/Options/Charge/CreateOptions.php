@@ -47,6 +47,10 @@ class CreateOptions extends OptionsAbstract
             ->allowedTypes('array')
             ->info('Bank account to charge (don\'t send if charging an authorization code)');
 
+        $resolver->define('card')
+            ->allowedTypes('array')
+            ->info('Card details to charge (don\'t send if charging an authorization code)');
+
         $resolver->define('bank_transfer')
             ->allowedTypes('array')
             ->info('Takes the settings for the Pay with Transfer (PwT) channel');

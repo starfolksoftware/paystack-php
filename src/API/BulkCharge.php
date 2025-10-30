@@ -11,12 +11,14 @@ class BulkCharge extends ApiAbstract
     /**
      * Send an array of objects with authorization codes and amount in kobo so we can process transactions as a batch
      * 
-     * @param array $params
+     * @param BulkChargeOptions\InitiateOptions|array $options
      * @return array
      */
-    public function initiate(array $params): array
+    public function initiate(BulkChargeOptions\InitiateOptions|array $options): array
     {
-        $options = new BulkChargeOptions\InitiateOptions($params);
+        if (is_array($options)) {
+            $options = new BulkChargeOptions\InitiateOptions($options);
+        }
 
         $response = $this->httpClient->post('/bulkcharge', body: json_encode($options->all()));
 
@@ -26,12 +28,14 @@ class BulkCharge extends ApiAbstract
     /**
      * List bulk charge batches created by the integration
      * 
-     * @param array $params
+     * @param BulkChargeOptions\ReadAllOptions|array $options
      * @return array
      */
-    public function all(array $params = []): array
+    public function all(BulkChargeOptions\ReadAllOptions|array $options = []): array
     {
-        $options = new BulkChargeOptions\ReadAllOptions($params);
+        if (is_array($options)) {
+            $options = new BulkChargeOptions\ReadAllOptions($options);
+        }
 
         $response = $this->httpClient->get('/bulkcharge', [
             'query' => $options->all()
@@ -57,12 +61,14 @@ class BulkCharge extends ApiAbstract
      * Retrieve the charges associated with a specified batch code
      * 
      * @param string $idOrCode
-     * @param array $params
+     * @param BulkChargeOptions\GetChargesOptions|array $options
      * @return array
      */
-    public function getCharges(string $idOrCode, array $params = []): array
+    public function getCharges(string $idOrCode, BulkChargeOptions\GetChargesOptions|array $options = []): array
     {
-        $options = new BulkChargeOptions\GetChargesOptions($params);
+        if (is_array($options)) {
+            $options = new BulkChargeOptions\GetChargesOptions($options);
+        }
 
         $response = $this->httpClient->get("/bulkcharge/{$idOrCode}/charges", [
             'query' => $options->all()

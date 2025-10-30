@@ -4,6 +4,10 @@ namespace StarfolkSoftware\Paystack\Tests;
 
 use Laminas\Diactoros\Response;
 use Laminas\Diactoros\Stream;
+use StarfolkSoftware\Paystack\Options\Verification\{
+    ResolveAccountOptions,
+    ValidateAccountOptions
+};
 
 final class VerificationTest extends TestCase
 {
@@ -27,10 +31,11 @@ final class VerificationTest extends TestCase
         
         $this->mockClient->addResponse($response);
         
-        $data = $this->client()->verification->resolveAccount([
+        $options = new ResolveAccountOptions([
             'account_number' => '0123456789',
             'bank_code' => '044'
         ]);
+        $data = $this->client()->verification->resolveAccount($options);
 
         $sentRequest = $this->mockClient->getLastRequest();
         
@@ -72,7 +77,7 @@ final class VerificationTest extends TestCase
         
         $this->mockClient->addResponse($response);
         
-        $data = $this->client()->verification->validateAccount([
+        $options = new ValidateAccountOptions([
             'account_name' => 'John Doe',
             'account_number' => '0123456789',
             'account_type' => 'personal',
@@ -81,6 +86,7 @@ final class VerificationTest extends TestCase
             'document_type' => 'identityNumber',
             'document_number' => '12345678901'
         ]);
+        $data = $this->client()->verification->validateAccount($options);
 
         $sentRequest = $this->mockClient->getLastRequest();
         $sentBody = $sentRequest->getBody()->__toString();

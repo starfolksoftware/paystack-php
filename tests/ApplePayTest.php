@@ -4,6 +4,11 @@ namespace StarfolkSoftware\Paystack\Tests;
 
 use Laminas\Diactoros\Response;
 use Laminas\Diactoros\Stream;
+use StarfolkSoftware\Paystack\Options\ApplePay\{
+    RegisterDomainOptions,
+    ListDomainsOptions,
+    UnregisterDomainOptions
+};
 
 final class ApplePayTest extends TestCase
 {
@@ -31,9 +36,10 @@ final class ApplePayTest extends TestCase
         
         $this->mockClient->addResponse($response);
         
-        $data = $this->client()->applePay->registerDomain([
+        $options = new RegisterDomainOptions([
             'domainName' => 'example.com'
         ]);
+        $data = $this->client()->applePay->registerDomain($options);
 
         $sentRequest = $this->mockClient->getLastRequest();
         $sentBody = $sentRequest->getBody()->__toString();
@@ -102,7 +108,8 @@ final class ApplePayTest extends TestCase
         
         $this->mockClient->addResponse($response);
         
-        $data = $this->client()->applePay->listDomains(['use_cursor' => 'false']);
+        $options = new ListDomainsOptions(['use_cursor' => false]);
+        $data = $this->client()->applePay->listDomains($options);
 
         $sentRequest = $this->mockClient->getLastRequest();
         
@@ -134,9 +141,10 @@ final class ApplePayTest extends TestCase
         
         $this->mockClient->addResponse($response);
         
-        $data = $this->client()->applePay->unregisterDomain([
+        $options = new UnregisterDomainOptions([
             'domainName' => 'old.example.com'
         ]);
+        $data = $this->client()->applePay->unregisterDomain($options);
 
         $sentRequest = $this->mockClient->getLastRequest();
         $sentBody = $sentRequest->getBody()->__toString();

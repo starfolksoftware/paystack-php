@@ -4,6 +4,14 @@ namespace StarfolkSoftware\Paystack\Tests;
 
 use Laminas\Diactoros\Response;
 use Laminas\Diactoros\Stream;
+use StarfolkSoftware\Paystack\Options\Charge\{
+    CreateOptions, 
+    SubmitPinOptions,
+    SubmitOtpOptions,
+    SubmitPhoneOptions,
+    SubmitBirthdayOptions,
+    SubmitAddressOptions
+};
 
 final class ChargeTest extends TestCase
 {
@@ -44,7 +52,7 @@ final class ChargeTest extends TestCase
         
         $this->mockClient->addResponse($response);
         
-        $data = $this->client()->charges->create([
+        $options = new CreateOptions([
             'email' => 'customer@email.com',
             'amount' => '10000',
             'card' => [
@@ -54,6 +62,7 @@ final class ChargeTest extends TestCase
                 'expiry_year' => '2030'
             ]
         ]);
+        $data = $this->client()->charges->create($options);
 
         $sentRequest = $this->mockClient->getLastRequest();
         $sentBody = $sentRequest->getBody()->__toString();
@@ -90,10 +99,11 @@ final class ChargeTest extends TestCase
         
         $this->mockClient->addResponse($response);
         
-        $data = $this->client()->charges->submitPin([
+        $options = new SubmitPinOptions([
             'pin' => '1234',
             'reference' => 'T563902343_1628168464'
         ]);
+        $data = $this->client()->charges->submitPin($options);
 
         $sentRequest = $this->mockClient->getLastRequest();
         $sentBody = $sentRequest->getBody()->__toString();
@@ -132,10 +142,11 @@ final class ChargeTest extends TestCase
         
         $this->mockClient->addResponse($response);
         
-        $data = $this->client()->charges->submitOtp([
+        $options = new SubmitOtpOptions([
             'otp' => '123456',
             'reference' => 'T563902343_1628168464'
         ]);
+        $data = $this->client()->charges->submitOtp($options);
 
         $sentRequest = $this->mockClient->getLastRequest();
         $sentBody = $sentRequest->getBody()->__toString();
@@ -171,10 +182,11 @@ final class ChargeTest extends TestCase
         
         $this->mockClient->addResponse($response);
         
-        $data = $this->client()->charges->submitPhone([
+        $options = new SubmitPhoneOptions([
             'phone' => '+2348012345678',
             'reference' => 'T563902343_1628168464'
         ]);
+        $data = $this->client()->charges->submitPhone($options);
 
         $sentRequest = $this->mockClient->getLastRequest();
         $sentBody = $sentRequest->getBody()->__toString();
@@ -210,10 +222,11 @@ final class ChargeTest extends TestCase
         
         $this->mockClient->addResponse($response);
         
-        $data = $this->client()->charges->submitBirthday([
+        $options = new SubmitBirthdayOptions([
             'birthday' => '1990-01-01',
             'reference' => 'T563902343_1628168464'
         ]);
+        $data = $this->client()->charges->submitBirthday($options);
 
         $sentRequest = $this->mockClient->getLastRequest();
         $sentBody = $sentRequest->getBody()->__toString();
@@ -252,13 +265,14 @@ final class ChargeTest extends TestCase
         
         $this->mockClient->addResponse($response);
         
-        $data = $this->client()->charges->submitAddress([
+        $options = new SubmitAddressOptions([
             'address' => '123 Main Street',
             'city' => 'Lagos',
             'state' => 'Lagos',
             'zipcode' => '100001',
             'reference' => 'T563902343_1628168464'
         ]);
+        $data = $this->client()->charges->submitAddress($options);
 
         $sentRequest = $this->mockClient->getLastRequest();
         $sentBody = $sentRequest->getBody()->__toString();

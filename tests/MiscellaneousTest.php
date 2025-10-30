@@ -4,6 +4,10 @@ namespace StarfolkSoftware\Paystack\Tests;
 
 use Laminas\Diactoros\Response;
 use Laminas\Diactoros\Stream;
+use StarfolkSoftware\Paystack\Options\Miscellaneous\{
+    ListBanksOptions,
+    ListStatesOptions
+};
 
 final class MiscellaneousTest extends TestCase
 {
@@ -56,7 +60,8 @@ final class MiscellaneousTest extends TestCase
         
         $this->mockClient->addResponse($response);
         
-        $data = $this->client()->miscellaneous->listBanks(['country' => 'nigeria']);
+        $options = new ListBanksOptions(['country' => 'nigeria']);
+        $data = $this->client()->miscellaneous->listBanks($options);
 
         $sentRequest = $this->mockClient->getLastRequest();
         
@@ -190,7 +195,8 @@ final class MiscellaneousTest extends TestCase
         
         $this->mockClient->addResponse($response);
         
-        $data = $this->client()->miscellaneous->listStates(['country' => 'NG']);
+        $options = new ListStatesOptions(['country' => 'NG']);
+        $data = $this->client()->miscellaneous->listStates($options);
 
         $sentRequest = $this->mockClient->getLastRequest();
         

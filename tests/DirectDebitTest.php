@@ -4,6 +4,10 @@ namespace StarfolkSoftware\Paystack\Tests;
 
 use Laminas\Diactoros\Response;
 use Laminas\Diactoros\Stream;
+use StarfolkSoftware\Paystack\Options\DirectDebit\{
+    TriggerActivationChargeOptions,
+    ListMandateAuthorizationsOptions
+};
 
 final class DirectDebitTest extends TestCase
 {
@@ -41,7 +45,8 @@ final class DirectDebitTest extends TestCase
         ];
 
         $expectedBody = json_encode([
-            'mandate_code' => 'MANDATE_abc123def456'
+            'mandate_code' => 'MANDATE_abc123def456',
+            'amount' => 10000
         ]);
 
         $stream = new Stream('php://memory', 'r+');
@@ -52,9 +57,11 @@ final class DirectDebitTest extends TestCase
         
         $this->mockClient->addResponse($response);
         
-        $data = $this->client()->directDebit->triggerActivationCharge([
-            'mandate_code' => 'MANDATE_abc123def456'
+        $options = new TriggerActivationChargeOptions([
+            'mandate_code' => 'MANDATE_abc123def456',
+            'amount' => 10000
         ]);
+        $data = $this->client()->directDebit->triggerActivationCharge($options);
 
         $sentRequest = $this->mockClient->getLastRequest();
         $sentBody = $sentRequest->getBody()->__toString();
@@ -129,7 +136,8 @@ final class DirectDebitTest extends TestCase
         
         $this->mockClient->addResponse($response);
         
-        $data = $this->client()->directDebit->listMandateAuthorizations(['status' => 'active']);
+        $options = new ListMandateAuthorizationsOptions([]);
+        $data = $this->client()->directDebit->listMandateAuthorizations($options);
 
         $sentRequest = $this->mockClient->getLastRequest();
         

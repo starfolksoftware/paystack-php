@@ -24,7 +24,7 @@ class CreateOptions extends OptionsAbstract
         $resolver->define('type')
             ->required()
             ->allowedTypes('string')
-            ->allowedValues(['percentage', 'flat'])
+            ->allowedValues('percentage', 'flat')
             ->info('The type of transaction split you want to create. You can use one of the following: percentage | flat');
 
         $resolver->define('currency')
@@ -39,7 +39,7 @@ class CreateOptions extends OptionsAbstract
 
         $resolver->define('bearer_type')
             ->allowedTypes('string')
-            ->allowedValues(['subaccount', 'account', 'all-proportional', 'all'])
+            ->allowedValues('subaccount', 'account', 'all-proportional', 'all')
             ->info('Any of subaccount | account | all-proportional | all');
 
         $resolver->define('bearer_subaccount')

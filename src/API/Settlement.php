@@ -4,6 +4,7 @@ namespace StarfolkSoftware\Paystack\API;
 
 use StarfolkSoftware\Paystack\Abstracts\ApiAbstract;
 use StarfolkSoftware\Paystack\HttpClient\Message\ResponseMediator;
+use StarfolkSoftware\Paystack\Options\Settlement as SettlementOptions;
 
 class Settlement extends ApiAbstract
 {
@@ -15,9 +16,15 @@ class Settlement extends ApiAbstract
      */
     public function all(array $params = []): array
     {
-        $response = $this->httpClient->get('/settlement', [
-            'query' => $params
-        ]);
+        $options = new SettlementOptions\ReadAllOptions($params);
+        $query = $options->all();
+
+        $requestOptions = [];
+        if (!empty($query)) {
+            $requestOptions['query'] = $query;
+        }
+
+        $response = $this->httpClient->get('/settlement', $requestOptions);
 
         return ResponseMediator::getContent($response);
     }
@@ -31,9 +38,15 @@ class Settlement extends ApiAbstract
      */
     public function getTransactions(string $id, array $params = []): array
     {
-        $response = $this->httpClient->get("/settlement/{$id}/transactions", [
-            'query' => $params
-        ]);
+        $options = new SettlementOptions\TransactionsOptions($params);
+        $query = $options->all();
+
+        $requestOptions = [];
+        if (!empty($query)) {
+            $requestOptions['query'] = $query;
+        }
+
+        $response = $this->httpClient->get("/settlement/{$id}/transactions", $requestOptions);
 
         return ResponseMediator::getContent($response);
     }

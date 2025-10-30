@@ -125,6 +125,206 @@ class Client
     }
 
     /**
+     * Split API
+     * 
+     * @return API\Split
+     */
+    protected function splits(): API\Split
+    {
+        return new API\Split($this);
+    }
+
+    /**
+     * Terminal API
+     * 
+     * @return API\Terminal
+     */
+    protected function terminals(): API\Terminal
+    {
+        return new API\Terminal($this);
+    }
+
+    /**
+     * VirtualTerminal API
+     * 
+     * @return API\VirtualTerminal
+     */
+    protected function virtualTerminals(): API\VirtualTerminal
+    {
+        return new API\VirtualTerminal($this);
+    }
+
+    /**
+     * ApplePay API
+     * 
+     * @return API\ApplePay
+     */
+    protected function applePay(): API\ApplePay
+    {
+        return new API\ApplePay($this);
+    }
+
+    /**
+     * Subaccount API
+     * 
+     * @return API\Subaccount
+     */
+    protected function subaccounts(): API\Subaccount
+    {
+        return new API\Subaccount($this);
+    }
+
+    /**
+     * Product API
+     * 
+     * @return API\Product
+     */
+    protected function products(): API\Product
+    {
+        return new API\Product($this);
+    }
+
+    /**
+     * DirectDebit API
+     * 
+     * @return API\DirectDebit
+     */
+    protected function directDebit(): API\DirectDebit
+    {
+        return new API\DirectDebit($this);
+    }
+
+    /**
+     * Integration API
+     * 
+     * @return API\Integration
+     */
+    protected function integration(): API\Integration
+    {
+        return new API\Integration($this);
+    }
+
+    /**
+     * Miscellaneous API
+     * 
+     * @return API\Miscellaneous
+     */
+    protected function miscellaneous(): API\Miscellaneous
+    {
+        return new API\Miscellaneous($this);
+    }
+
+    /**
+     * Verification API
+     * 
+     * @return API\Verification
+     */
+    protected function verification(): API\Verification
+    {
+        return new API\Verification($this);
+    }
+
+    /**
+     * Transfer API
+     * 
+     * @return API\Transfer
+     */
+    protected function transfers(): API\Transfer
+    {
+        return new API\Transfer($this);
+    }
+
+    /**
+     * Transfer Recipient API
+     * 
+     * @return API\TransferRecipient
+     */
+    protected function transferRecipients(): API\TransferRecipient
+    {
+        return new API\TransferRecipient($this);
+    }
+
+    /**
+     * Transfer Control API
+     * 
+     * @return API\TransferControl
+     */
+    protected function transferControl(): API\TransferControl
+    {
+        return new API\TransferControl($this);
+    }
+
+    /**
+     * Charge API
+     * 
+     * @return API\Charge
+     */
+    protected function charges(): API\Charge
+    {
+        return new API\Charge($this);
+    }
+
+    /**
+     * Dispute API
+     * 
+     * @return API\Dispute
+     */
+    protected function disputes(): API\Dispute
+    {
+        return new API\Dispute($this);
+    }
+
+    /**
+     * Refund API
+     * 
+     * @return API\Refund
+     */
+    protected function refunds(): API\Refund
+    {
+        return new API\Refund($this);
+    }
+
+    /**
+     * Settlement API
+     * 
+     * @return API\Settlement
+     */
+    protected function settlements(): API\Settlement
+    {
+        return new API\Settlement($this);
+    }
+
+    /**
+     * Bulk Charge API
+     * 
+     * @return API\BulkCharge
+     */
+    protected function bulkCharges(): API\BulkCharge
+    {
+        return new API\BulkCharge($this);
+    }
+
+    /**
+     * Page API
+     * 
+     * @return API\Page
+     */
+    protected function pages(): API\Page
+    {
+        return new API\Page($this);
+    }
+
+    /**
+     * Dedicated Virtual Account API
+     * 
+     * @return API\DedicatedVirtualAccount
+     */
+    protected function dedicatedVirtualAccounts(): API\DedicatedVirtualAccount
+    {
+        return new API\DedicatedVirtualAccount($this);
+    }
+
+    /**
      * Read data from inaccessible (protected or private) 
      * or non-existing properties.
      * 

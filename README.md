@@ -7,12 +7,12 @@ A modern, developer-friendly PHP SDK for the [Paystack API](https://paystack.com
 ## Features
 
 - ✅ **Complete API Coverage** - All Paystack API endpoints supported
-- ✅ **Type Safety** - Full PHP 8.1+ type declarations
+- ✅ **Type Safety** - Full PHP 8.2+ type declarations
 - ✅ **Parameter Validation** - Automatic validation of API parameters
 - ✅ **PSR-18 HTTP Client** - Compatible with any PSR-18 HTTP client
 - ✅ **Comprehensive Examples** - Detailed usage examples for all features
 - ✅ **Exception Handling** - Detailed error responses and exception handling
-- ✅ **Modern PHP** - Built for PHP 8.1+ with modern coding standards
+- ✅ **Modern PHP** - Built for PHP 8.2+ with modern coding standards
 
 ## Quick Links
 
@@ -41,7 +41,7 @@ A modern, developer-friendly PHP SDK for the [Paystack API](https://paystack.com
 
 ## Requirements
 
-- **PHP 8.1 or higher**
+- **PHP 8.2 or higher**
 - **PSR-18 HTTP Client** (any implementation)
 - **Composer** for dependency management
 

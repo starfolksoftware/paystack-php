@@ -23,9 +23,10 @@ class Verification extends ApiAbstract
             $options = new ResolveAccountOptions($options);
         }
 
-        $response = $this->httpClient->get('/bank/resolve', [
-            'query' => $options->all()
-        ]);
+        $params = $options->all();
+        $queryString = http_build_query($params);
+        
+        $response = $this->httpClient->get("/bank/resolve?{$queryString}");
 
         return ResponseMediator::getContent($response);
     }
